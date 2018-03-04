@@ -12,9 +12,10 @@ same time as the oven, coupled with a few other cheap bits and pieces like an
 open frame Mean Well IRM-10-5 5V 2A flyback converter should suffice.  Nothing
 fancy, no bells and whistles.
 
-The PCB is intended to be milled as it should be a quicker turnaround and
-cheaper since I have the copper clad and engraving bits already, although it
-is much more labour intensive than outsourcing to China.
+The PCB was intended to be milled as it should have been a quicker turnaround
+and cheaper since I have the copper clad and engraving bits already, although it
+is much more labour intensive than outsourcing to China.  Unfortunately the
+resolution required to mill the features of the MAX31850 was insufficient.
 
 This is a personal one-off project and not intended for anybody else's
 consumption.  But in case somebody's tempted then the usual disclaimers about

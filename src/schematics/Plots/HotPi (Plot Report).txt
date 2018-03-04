@@ -1,13 +1,13 @@
 Plot Report
 -----------
 
-Report Written:     Friday, February 23, 2018
+Report Written:     Sunday, March 04, 2018
 Project Path:       Z:\home\pete\Projects\HotPi\src\schematics\HotPi.prj
 Design Path:        Z:\home\pete\Projects\HotPi\src\schematics\HotPi.pcb
 Design Title:       
 Created:            13/02/2018 10:54:05
-Last Saved:         21/02/2018 08:57:34
-Editing Time:       3699 min
+Last Saved:         04/03/2018 13:51:20
+Editing Time:       3486 min
 Units:              mil (precision 0)
 
 
@@ -30,7 +30,7 @@ Gerber Settings
 Drill Settings
 ==============
 
-    Excellon Format 1    Format 3.5 absolute in mm.
+    Excellon Format 1    Format 3.5 absolute in inches.
     No zero suppression.
 
 
@@ -39,6 +39,23 @@ Plots Output
 
     Plot Job: "Z:\home\pete\Projects\HotPi\src\schematics\HotPi.mop"
 
+
+Gerber Output
+=============
+
+Z:\home\pete\Projects\HotPi\src\schematics\Plots\HotPi - Top Silkscreen.gbr
+
+    Layers:
+    ------------------
+    Top Silkscreen
+    Board Outlines
+
+    D-Code Shape  (thou)
+    -----------------------
+    D10    Round 5.00
+    D12    Round 10.00
+    D109   Round 12.00
+    D125   Round 7.87
 
 Gerber Output
 =============
@@ -65,12 +82,56 @@ Z:\home\pete\Projects\HotPi\src\schematics\Plots\HotPi - Top Copper.gbr
     D113   Round 110.24
     D114   Round 220.47
     D115   Round 129.92
-    D116   Square 59.06
     D117   Rectangle 25.00 X 80.00  Rotation 90
     D118   Rectangle 49.21 X 78.74  Rotation 90
     D119   Square 76.00
     D120   Round 64.00
+    D123   Round 50.00
     D124   Round 157.48
+    D126   Round 59.06
+
+Gerber Output
+=============
+
+Z:\home\pete\Projects\HotPi\src\schematics\Plots\HotPi - Top Copper (Resist).gbr
+
+    Layers:
+    ------------------
+    Top Copper
+    Board Outlines
+
+    D-Code Shape  (thou)
+    ----------------------------------------------
+    D82    Oval 70.00 X 120.00  Rotation 90
+    D86    Square 78.00
+    D94    Rectangle 38.00 X 45.00
+    D95    Rectangle 38.00 X 45.00  Rotation 90
+    D109   Round 12.00
+    D127   Rectangle 40.71 X 40.71  Rotation 90
+    D128   Round 147.80
+    D129   Round 120.24
+    D130   Round 230.47
+    D131   Round 139.92
+    D132   Round 69.06
+    D133   Rectangle 35.00 X 90.00  Rotation 90
+    D134   Rectangle 59.21 X 88.74  Rotation 90
+    D135   Square 86.00
+    D136   Round 167.48
+
+Gerber Output
+=============
+
+Z:\home\pete\Projects\HotPi\src\schematics\Plots\HotPi - Bottom Silkscreen.gbr
+
+    Layers:
+    ---------------------
+    Bottom Silkscreen
+    Board Outlines
+
+    D-Code Shape  (thou)
+    -----------------------
+    D10    Round 5.00
+    D109   Round 12.00
 
 Gerber Output
 =============
@@ -98,13 +159,40 @@ Z:\home\pete\Projects\HotPi\src\schematics\Plots\HotPi - Bottom Copper.gbr
     D113   Round 110.24
     D114   Round 220.47
     D115   Round 129.92
-    D116   Square 59.06
     D119   Square 76.00
     D120   Round 64.00
     D121   Rectangle 11.81 X 31.10  Rotation 90
     D122   Rectangle 90.55 X 102.36  Rotation 90
-    D123   Round 50.00
     D124   Round 157.48
+    D126   Round 59.06
+
+Gerber Output
+=============
+
+Z:\home\pete\Projects\HotPi\src\schematics\Plots\HotPi - Bottom Copper (Resist).gbr
+
+    Layers:
+    ------------------
+    Bottom Copper
+    Board Outlines
+
+    D-Code Shape  (thou)
+    ------------------------------------------------
+    D82    Oval 70.00 X 120.00  Rotation 90
+    D86    Square 78.00
+    D90    Rectangle 65.00 X 70.00
+    D94    Rectangle 38.00 X 45.00
+    D95    Rectangle 38.00 X 45.00  Rotation 90
+    D109   Round 12.00
+    D128   Round 147.80
+    D129   Round 120.24
+    D130   Round 230.47
+    D131   Round 139.92
+    D132   Round 69.06
+    D135   Square 86.00
+    D136   Round 167.48
+    D137   Rectangle 21.81 X 41.10  Rotation 90
+    D138   Rectangle 100.55 X 112.36  Rotation 90
 
 NC Drill Output
 ===============
@@ -115,14 +203,20 @@ Z:\home\pete\Projects\HotPi\src\schematics\Plots\HotPi - Drill Data - [Through H
     ---------------------------
     Plated Round Drill Holes
     Plated Slots
-    Plated Board Outlines
 
     Tool  Size         Count   ID
     ------------------------------------
-    T001  000.81280 mm 50    D
-    T002  001.30000 mm 2     U
+    T001  000.02756 in 4     Y
+    T002  000.03200 in 41    D
+    T003  000.03937 in 40    C
+    T004  000.04300 in 9     X
+    T005  000.04331 in 4     F
+    T006  000.05118 in 2     U
+    T007  000.05512 in 2     V
+    T008  000.05906 in 6     N
+    T009  000.11024 in 1     W
     ------------------------------------
-    Total              52
+    Total              109
     ------------------------------------
 
 Z:\home\pete\Projects\HotPi\src\schematics\Plots\HotPi - Drill Data - [Through Hole] (Unplated).drl
@@ -135,16 +229,10 @@ Z:\home\pete\Projects\HotPi\src\schematics\Plots\HotPi - Drill Data - [Through H
 
     Tool  Size         Count   ID
     ------------------------------------
-    T001  000.63500 mm 1
-    T002  000.70000 mm 4     T
-    T003  001.00000 mm 40    I
-    T004  001.09220 mm 9     R
-    T005  001.10000 mm 4     S
-    T006  001.40000 mm 2     P
-    T007  001.50000 mm 6     O
-    T008  002.80000 mm 5     Q
+    T001  000.02500 in 1
+    T002  000.11024 in 4     Q
     ------------------------------------
-    Total              71
+    Total              5
     ------------------------------------
 
 
@@ -164,15 +252,16 @@ Drill Ident Drawing
 
     Drill Plated Size Shape ID
     -----------------------------------
+    39    Y      100  Round C
     32    Y      100  Round D
-    39           100  Round I
-    59           100  Round O
-    55           100  Round P
+    43    Y      100  Round F
+    59    Y      100  Round N
     110          100  Round Q
-    43           100  Round R
-    43           100  Round S
-    28           100  Round T
     51    Y      100  Round U
+    55    Y      100  Round V
+    110   Y      100  Round W
+    43    Y      100  Round X
+    28    Y      100  Round Y
 
     D-Code Shape  (thou)
     -----------------------
