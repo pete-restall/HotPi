@@ -2,4 +2,9 @@
 /src/schematics/~*.sch
 /src/schematics/~*.pcb
 /src/schematics/HotPi (*.txt
+/src/software/**/bin
+/src/software/**/obj
+/src/software/**/.vs
+/src/software/**/*.user
+/src/software/packages
 .*.swp
