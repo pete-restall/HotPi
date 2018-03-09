@@ -1,0 +1,93 @@
+1). Install the latest Raspbian on a blank SD (cfdisk it if necessary).  Use
+    the 'Lite' image, without all the desktop stuff:
+
+	$ dd bs=8M if=raspbian.img of=/dev/sdX
+
+2). Set up the Pi for headless SSH access:
+
+	$ mount /dev/sdX1 /mnt
+	$ touch /mnt/ssh
+	$ umount /dev/sdX1
+
+	$ mount /dev/sdX2 /mnt
+	$ vi /mnt/etc/wpa_supplicant/wpa_supplicant.conf
+
+		ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
+		update_config=1
+		country=GB
+
+		network={
+			ssid="*** ENTER SSID HERE ***"
+			scan_ssid=1
+			psk="*** ENTER SUPER SECRET WIFI PASSWORD HERE ***"
+			key_mgmt=WPA-PSK
+		}
+
+	:wq
+	$ umount /dev/sdX2
+
+3). Boot and SSH to the Pi to expand the filesystem to the entire SD capacity:
+
+	$ sudo raspi-config
+
+		Advanced Options -> Expand Filesystem
+
+4). Reboot the Pi for the filesystem expansion to take effect, then SSH to it.
+
+5). Install Mono:
+
+	$ sudo apt-get install dirmngr
+	$ sudo apt-get update
+	$ sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF
+	$ echo "deb http://download.mono-project.com/repo/debian stable-raspbianstretch main" | sudo tee /etc/apt/sources.list.d/mono-official-stable.list
+	$ sudo apt-get update
+	$ sudo apt-get install mono-complete
+
+6). Create a user (hotpi), group (hotpi) and home for the application:
+
+	$ sudo addgroup hotpi
+	$ sudo adduser hotpi --gid 1001
+
+7). Copy the (built) application to /home/hotpi/bin
+
+8). Setup sudo for the application:
+
+	$ TODO...
+
+9). Setup authbind for the application:
+
+	$ sudo apt-get install authbind
+	$ sudo touch /etc/authbind/byport/80
+	$ sudo chown root:hotpi /etc/authbind/byport/80
+	$ sudo chmod 710 /etc/authbind/byport/80
+
+10). Setup the /etc/rc.local script to run the application on boot:
+
+	$ sudo vi /etc/rc.local
+
+		#!/bin/sh -e
+		#
+		# rc.local
+		#
+		# This script is executed at the end of each multiuser runlevel.
+		# Make sure that the script will "exit 0" on success or any other
+		# value on error.
+		#
+		# In order to enable or disable this script just change the execution
+		# bits.
+		#
+		# By default this script does nothing.
+
+		# Print the IP address
+		_IP=$(hostname -I) || true
+		if [ "$_IP" ]; then
+			printf "My IP address is %s\n" "$_IP"
+		fi
+
+		su hotpi -c '/usr/bin/authbind --deep /usr/bin/mono /home/hotpi/bin/HotPi.exe >> /home/hotpi/run.log 2>&1 &'
+
+		exit 0
+
+	:wq
+
+11). Reboot and test the application runs...
