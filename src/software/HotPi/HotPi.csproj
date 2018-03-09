@@ -196,6 +196,7 @@
     <EmbeddedResource Include="Reflow\Ui\Home\IndexView.cshtml">
       <LogicalName>Restall.HotPi.Reflow.Ui.Home.IndexView.cshtml</LogicalName>
     </EmbeddedResource>
+    <None Include="Reflow\Ui\Angular\build.cmd" />
   </ItemGroup>
   <ItemGroup>
     <None Include="FodyWeavers.xml" />
@@ -215,6 +216,23 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Reflow\Ui\Assets\favicon\favicon.ico">
       <LogicalName>Restall.HotPi.Reflow.Ui.assets.favicon.favicon.ico</LogicalName>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Reflow\Ui\Angular\.gitignore" />
+    <None Include="Reflow\Ui\Angular\dist\3rdpartylicenses.txt" />
+    <None Include="Reflow\Ui\Angular\dist\index.html" />
+    <EmbeddedResource Include="Reflow\Ui\Angular\dist\inline.318b50c57b4eba3d437b.bundle.js">
+      <LogicalName>Restall.HotPi.Reflow.Ui.assets.inline.318b50c57b4eba3d437b.bundle.js</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reflow\Ui\Angular\dist\main.f54e1bb3bba0f2821ee2.bundle.js">
+      <LogicalName>Restall.HotPi.Reflow.Ui.assets.main.f54e1bb3bba0f2821ee2.bundle.js</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reflow\Ui\Angular\dist\polyfills.bf95165a1d5098766b92.bundle.js">
+      <LogicalName>Restall.HotPi.Reflow.Ui.assets.polyfills.bf95165a1d5098766b92.bundle.js</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reflow\Ui\Angular\dist\styles.ac89bfdd6de82636b768.bundle.css">
+      <LogicalName>Restall.HotPi.Reflow.Ui.assets.styles.ac89bfdd6de82636b768.bundle.css</LogicalName>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -5,17 +5,24 @@
 	<head>
 		<meta charset="utf-8" />
 		<title>HotPi</title>
-		<base href="/" />
+		<base href="/assets/" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<link rel="icon" type="image/png" sizes="192x192"  href="/assets/favicon/android-icon-192x192.png" />
-		<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon/favicon-32x32.png" />
-		<link rel="icon" type="image/png" sizes="96x96" href="/assets/favicon/favicon-96x96.png" />
-		<link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon/favicon-16x16.png" />
+		<link href="styles.ac89bfdd6de82636b768.bundle.css" rel="stylesheet" />
+		<link rel="icon" type="image/png" sizes="192x192"  href="favicon/android-icon-192x192.png" />
+		<link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png" />
+		<link rel="icon" type="image/png" sizes="96x96" href="favicon/favicon-96x96.png" />
+		<link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png" />
 	</head>
 	<body>
 		<script type="text/javascript" language="javascript">
-			window.hotpi.viewModel = @Html.AsJson(Model);
+			window.hotpi = window.hotpi || {};
+			(function(exports, undefined) {
+				exports.viewModel = @Html.AsJson(Model);
+			})(window.hotpi);
 		</script>
 		<app-root></app-root>
+		<script type="text/javascript" src="inline.318b50c57b4eba3d437b.bundle.js"></script>
+		<script type="text/javascript" src="polyfills.bf95165a1d5098766b92.bundle.js"></script>
+		<script type="text/javascript" src="main.f54e1bb3bba0f2821ee2.bundle.js"></script>
 	</body>
 </html>
