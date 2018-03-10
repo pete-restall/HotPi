@@ -225,14 +225,14 @@
     <EmbeddedResource Include="Reflow\Ui\Angular\dist\inline.318b50c57b4eba3d437b.bundle.js">
       <LogicalName>Restall.HotPi.Reflow.Ui.assets.inline.318b50c57b4eba3d437b.bundle.js</LogicalName>
     </EmbeddedResource>
-    <EmbeddedResource Include="Reflow\Ui\Angular\dist\main.f54e1bb3bba0f2821ee2.bundle.js">
-      <LogicalName>Restall.HotPi.Reflow.Ui.assets.main.f54e1bb3bba0f2821ee2.bundle.js</LogicalName>
+    <EmbeddedResource Include="Reflow\Ui\Angular\dist\main.246e3aaee2188243d750.bundle.js">
+      <LogicalName>Restall.HotPi.Reflow.Ui.assets.main.246e3aaee2188243d750.bundle.js</LogicalName>
     </EmbeddedResource>
     <EmbeddedResource Include="Reflow\Ui\Angular\dist\polyfills.bf95165a1d5098766b92.bundle.js">
       <LogicalName>Restall.HotPi.Reflow.Ui.assets.polyfills.bf95165a1d5098766b92.bundle.js</LogicalName>
     </EmbeddedResource>
-    <EmbeddedResource Include="Reflow\Ui\Angular\dist\styles.ac89bfdd6de82636b768.bundle.css">
-      <LogicalName>Restall.HotPi.Reflow.Ui.assets.styles.ac89bfdd6de82636b768.bundle.css</LogicalName>
+    <EmbeddedResource Include="Reflow\Ui\Angular\dist\styles.165a590101d33f50fb43.bundle.css">
+      <LogicalName>Restall.HotPi.Reflow.Ui.assets.styles.165a590101d33f50fb43.bundle.css</LogicalName>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
