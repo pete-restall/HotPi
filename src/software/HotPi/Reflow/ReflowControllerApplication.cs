@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Threading;
-using Nancy.Hosting.Self;
+using Restall.HotPi.Nancy;
 
 namespace Restall.HotPi.Reflow
 {
@@ -9,10 +9,10 @@ namespace Restall.HotPi.Reflow
 	{
 		[SuppressMessage("ReSharper", "NotAccessedField.Local", Justification = "Lifetime control is required - prevents premature garbage collection")]
 		private readonly EnsureSingleInstanceOfReflowApplication mutex;
-		private readonly Func<NancyHost> nancyHostFactory;
+		private readonly Func<IHostNancy> nancyHostFactory;
 		private readonly ManualResetEventSlim stop;
 
-		public ReflowControllerApplication(EnsureSingleInstanceOfReflowApplication mutex, Func<NancyHost> nancyHostFactory)
+		public ReflowControllerApplication(EnsureSingleInstanceOfReflowApplication mutex, Func<IHostNancy> nancyHostFactory)
 		{
 			this.mutex = mutex;
 			this.nancyHostFactory = nancyHostFactory;
