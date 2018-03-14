@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { NbThemeModule } from '@nebular/theme';
+import { HubService } from 'ngx-signalr-hubservice';
 
 import { AppComponent } from './app.component';
 import { PageContainerModule } from './page-container/page-container.module';
@@ -20,6 +21,7 @@ const appRoutes: Routes = [];
 	PageContainerModule
   ],
   providers: [
+    HubService,
     RootViewModelService
   ],
   bootstrap: [AppComponent]

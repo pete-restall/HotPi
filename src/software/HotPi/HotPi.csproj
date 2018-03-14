@@ -50,6 +50,14 @@
       <HintPath>..\packages\HtmlTags.5.0.2\lib\net45\HtmlTags.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Microsoft.AspNet.SignalR.Core, Version=2.2.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.SignalR.Core.2.2.2\lib\net45\Microsoft.AspNet.SignalR.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.SignalR.Owin, Version=1.2.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.SignalR.Owin.1.2.2\lib\net45\Microsoft.AspNet.SignalR.Owin.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.Owin, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Owin.4.0.0\lib\net451\Microsoft.Owin.dll</HintPath>
       <Private>True</Private>
@@ -64,6 +72,10 @@
     </Reference>
     <Reference Include="Microsoft.Owin.Hosting, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Owin.Hosting.4.0.0\lib\net451\Microsoft.Owin.Hosting.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.4.0.0\lib\net451\Microsoft.Owin.Security.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.Threading.Tasks, Version=1.0.12.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
@@ -152,8 +164,8 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="System.Web" />
-    <Reference Include="System.Web.Cors, Version=5.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.AspNet.Cors.5.0.0\lib\net45\System.Web.Cors.dll</HintPath>
+    <Reference Include="System.Web.Cors, Version=5.2.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Cors.5.2.4\lib\net45\System.Web.Cors.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System.Web.Extensions" />
@@ -172,23 +184,34 @@
     <Compile Include="CodeAnalysisJustification.cs" />
     <Compile Include="ConventionsNinjectModule.cs" />
     <Compile Include="DoesNotParticipateInBindingConventionsAttribute.cs" />
+    <Compile Include="IObserve.cs" />
+    <Compile Include="Signalr\SignalrJsonSerialisationModule.cs" />
     <Compile Include="JsonSerialisationModule.cs" />
     <Compile Include="Nancy\IHaveNancyConventions.cs" />
     <Compile Include="Nancy\IHaveNancySettings.cs" />
     <Compile Include="IStoppable.cs" />
-    <Compile Include="Nancy\IHostNancy.cs" />
+    <Compile Include="IHostWebServer.cs" />
     <Compile Include="Nancy\JsonContentTypeStringExtensions.cs" />
     <Compile Include="Nancy\NancyContextJsonItemExtensions.cs" />
     <Compile Include="Nancy\NancyJsonBodyDeserialiser.cs" />
     <Compile Include="Nancy\NancyBootstrapper.cs" />
     <Compile Include="Nancy\NancyJsonSerialiser.cs" />
-    <Compile Include="Nancy\NancyOwinHost.cs" />
+    <Compile Include="JsonPrivateSetterOrMemberOfAnonymousTypeContractResolver.cs" />
+    <Compile Include="Signalr\SignalrNinjectDependencyResolver.cs" />
+    <Compile Include="OwinWebServerHost.cs" />
     <Compile Include="Nancy\NancyRazorConfiguration.cs" />
+    <Compile Include="Reflow\DummyReflowPlant.cs" />
+    <Compile Include="Reflow\IHostReflowPlant.cs" />
+    <Compile Include="Signalr\SignalrHubContextModule.cs" />
+    <Compile Include="Reflow\OvenTemperatureSampled.cs" />
+    <Compile Include="Reflow\OvenTemperatureSampledHub.cs" />
     <Compile Include="Reflow\NancySettings.cs" />
     <Compile Include="Nancy\NancyStaticResourceConventions.cs" />
     <Compile Include="Nancy\NancyViewConventions.cs" />
     <Compile Include="Razor\HrefHtmlHelperExtensions.cs" />
     <Compile Include="Razor\HtmlTagExtensions.cs" />
+    <Compile Include="Signalr\ObserverToHubBroadcastAdapter.cs" />
+    <Compile Include="Reflow\Temperature.cs" />
     <Compile Include="Reflow\Ui\Pi\NotShuttingDownResponse.cs" />
     <Compile Include="OnDispose.cs" />
     <Compile Include="Reflow\Ui\Pi\SendApplicationStopAfterResponse.cs" />
@@ -211,6 +234,9 @@
     <Compile Include="Reflow\Ui\Home\IndexResponse.cs" />
     <Compile Include="Nancy\ResourceLinker.cs" />
     <Compile Include="RunningApplicationAttribute.cs" />
+    <Compile Include="Signalr\SignalrHubConfigurationModule.cs" />
+    <Compile Include="TypeInheritanceExtensions.cs" />
+    <Compile Include="UseJsonSerialisationFor.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">

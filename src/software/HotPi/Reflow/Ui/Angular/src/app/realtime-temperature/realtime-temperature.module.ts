@@ -3,16 +3,20 @@ import { CommonModule } from '@angular/common';
 
 import { NgxEchartsModule } from 'ngx-echarts';
 
+import { OvenTemperatureSampledObservableModule } from '../oven-temperature-sampled-observable/oven-temperature-sampled-observable.module';
 import { RealtimeTemperatureComponent } from './realtime-temperature.component';
 
 @NgModule({
   imports: [
     CommonModule,
-    NgxEchartsModule
+    NgxEchartsModule,
+    OvenTemperatureSampledObservableModule
   ],
   exports: [
     RealtimeTemperatureComponent
   ],
-  declarations: [RealtimeTemperatureComponent]
+  declarations: [
+    RealtimeTemperatureComponent
+  ]
 })
 export class RealtimeTemperatureModule { }
