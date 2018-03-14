@@ -273,8 +273,6 @@
     <EmbeddedResource Include="Reflow\Ui\Angular\dist\scripts.bundle.js">
       <LogicalName>Restall.HotPi.Reflow.Ui.assets.scripts.bundle.js</LogicalName>
     </EmbeddedResource>
-    <None Include="Reflow\Ui\Angular\dist\3rdpartylicenses.txt" />
-    <None Include="Reflow\Ui\Angular\dist\index.html" />
     <EmbeddedResource Include="Reflow\Ui\Angular\dist\inline.bundle.js">
       <LogicalName>Restall.HotPi.Reflow.Ui.assets.inline.bundle.js</LogicalName>
     </EmbeddedResource>
