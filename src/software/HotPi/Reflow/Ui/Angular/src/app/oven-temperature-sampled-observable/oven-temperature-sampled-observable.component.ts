@@ -7,7 +7,11 @@ import {
     HubWrapper 
 } from 'ngx-signalr-hubservice';
 
+import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/toPromise';
+
+import { OvenTemperatureSampled } from './oven-temperature-sampled';
+import { Temperature } from './temperature';
 
 @Component({
   selector: 'hotpi-oven-temperature-sampled-observable',
@@ -18,16 +22,20 @@ import 'rxjs/add/operator/toPromise';
 export class OvenTemperatureSampledObservableComponent implements OnInit, OnDestroy {
   private connected: boolean;
   private hubWrapper: HubWrapper;
+  private observable: Observable<OvenTemperatureSampled>;
+  private subscribers: any;
 
   constructor(private hubService: HubService) {
     this.hubWrapper = hubService.register(this);
-	console.log('SERVICE REGISTERED...');
+
+	let outer = this;
+    this.observable = new Observable<OvenTemperatureSampled>(subscribers => {
+      outer.subscribers = subscribers;
+    });
   }
 
   public async ngOnInit() {
-	console.log('CONNECTING...');
     this.connected = await this.hubService.connect().toPromise();
-	console.log('CONNECTED...' + this.connected);
   }
 
   public ngOnDestroy() {
@@ -36,6 +44,13 @@ export class OvenTemperatureSampledObservableComponent implements OnInit, OnDest
 
   @HubSubscription()
   public observe(observed: any) {
-    console.log(observed);
+    if (typeof(this.subscribers) === 'undefined')
+      return;
+
+    this.subscribers.next(new OvenTemperatureSampled(new Date(observed.Timestamp), new Temperature(observed.Temperature.Kelvin)));
+  }
+
+  public get ovenTemperatureSampled(): Observable<OvenTemperatureSampled> {
+    return this.observable;
   }
 }
