@@ -8,11 +8,9 @@ namespace Restall.HotPi.Reflow
 	{
 		public NancySettings(ReflowControllerApplicationCommandLineArguments args)
 		{
-			this.Host = new Uri(
-				args.UiHost != string.Empty
-					? args.UiHost
-					: FromAppSettingsOrDefault("ui:nancy/Host", "http://localhost/"),
-				UriKind.Absolute);
+			this.Host = args.UiHost != string.Empty
+				? args.UiHost
+				: FromAppSettingsOrDefault("ui:nancy/Host", "http://+:80/");
 		}
 
 		private static string FromAppSettingsOrDefault(string key, string defaultValue)
@@ -20,6 +18,6 @@ namespace Restall.HotPi.Reflow
 			return ConfigurationManager.AppSettings[key]?.Trim() ?? defaultValue;
 		}
 
-		public Uri Host { get; }
+		public string Host { get; }
 	}
 }

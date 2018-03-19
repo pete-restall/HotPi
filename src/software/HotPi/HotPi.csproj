@@ -50,6 +50,34 @@
       <HintPath>..\packages\HtmlTags.5.0.2\lib\net45\HtmlTags.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Microsoft.AspNet.SignalR.Core, Version=2.2.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.SignalR.Core.2.2.2\lib\net45\Microsoft.AspNet.SignalR.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.SignalR.Owin, Version=1.2.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.SignalR.Owin.1.2.2\lib\net45\Microsoft.AspNet.SignalR.Owin.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.4.0.0\lib\net451\Microsoft.Owin.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Cors, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Cors.4.0.0\lib\net451\Microsoft.Owin.Cors.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Host.HttpListener, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Host.HttpListener.4.0.0\lib\net451\Microsoft.Owin.Host.HttpListener.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Hosting, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Hosting.4.0.0\lib\net451\Microsoft.Owin.Hosting.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.4.0.0\lib\net451\Microsoft.Owin.Security.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.Threading.Tasks, Version=1.0.12.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Bcl.Async.1.0.168\lib\net40\Microsoft.Threading.Tasks.dll</HintPath>
       <Private>True</Private>
@@ -70,12 +98,12 @@
       <HintPath>..\packages\Nancy.Bootstrappers.Ninject.1.4.1\lib\net40\Nancy.Bootstrappers.Ninject.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Nancy.Hosting.Self, Version=1.4.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Nancy.Hosting.Self.1.4.1\lib\net40\Nancy.Hosting.Self.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="Nancy.Linker, Version=0.3.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Nancy.Linker.0.3.1\lib\net40-Client\Nancy.Linker.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Nancy.Owin, Version=1.4.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Nancy.Owin.1.4.1\lib\net40\Nancy.Owin.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Nancy.ServiceRouting, Version=2.2.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -114,6 +142,10 @@
       <HintPath>..\packages\NullGuard.Fody.1.7.1\lib\net452\NullGuard.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Owin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f0ebd12fd5e55cc5, processorArchitecture=MSIL">
+      <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Configuration" />
@@ -132,6 +164,10 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="System.Web" />
+    <Reference Include="System.Web.Cors, Version=5.2.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Cors.5.2.4\lib\net45\System.Web.Cors.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.4\lib\net45\System.Web.Razor.dll</HintPath>
@@ -148,23 +184,34 @@
     <Compile Include="CodeAnalysisJustification.cs" />
     <Compile Include="ConventionsNinjectModule.cs" />
     <Compile Include="DoesNotParticipateInBindingConventionsAttribute.cs" />
+    <Compile Include="IObserve.cs" />
+    <Compile Include="Signalr\SignalrJsonSerialisationModule.cs" />
     <Compile Include="JsonSerialisationModule.cs" />
     <Compile Include="Nancy\IHaveNancyConventions.cs" />
     <Compile Include="Nancy\IHaveNancySettings.cs" />
     <Compile Include="IStoppable.cs" />
+    <Compile Include="IHostWebServer.cs" />
     <Compile Include="Nancy\JsonContentTypeStringExtensions.cs" />
     <Compile Include="Nancy\NancyContextJsonItemExtensions.cs" />
     <Compile Include="Nancy\NancyJsonBodyDeserialiser.cs" />
     <Compile Include="Nancy\NancyBootstrapper.cs" />
-    <Compile Include="Nancy\NancyHostProvider.cs" />
     <Compile Include="Nancy\NancyJsonSerialiser.cs" />
-    <Compile Include="Nancy\NancyNinjectModule.cs" />
+    <Compile Include="JsonPrivateSetterOrMemberOfAnonymousTypeContractResolver.cs" />
+    <Compile Include="Signalr\SignalrNinjectDependencyResolver.cs" />
+    <Compile Include="OwinWebServerHost.cs" />
     <Compile Include="Nancy\NancyRazorConfiguration.cs" />
+    <Compile Include="Reflow\DummyReflowPlant.cs" />
+    <Compile Include="Reflow\IHostReflowPlant.cs" />
+    <Compile Include="Signalr\SignalrHubContextModule.cs" />
+    <Compile Include="Reflow\OvenTemperatureSampled.cs" />
+    <Compile Include="Reflow\OvenTemperatureSampledHub.cs" />
     <Compile Include="Reflow\NancySettings.cs" />
     <Compile Include="Nancy\NancyStaticResourceConventions.cs" />
     <Compile Include="Nancy\NancyViewConventions.cs" />
     <Compile Include="Razor\HrefHtmlHelperExtensions.cs" />
     <Compile Include="Razor\HtmlTagExtensions.cs" />
+    <Compile Include="Signalr\ObserverToHubBroadcastAdapter.cs" />
+    <Compile Include="Reflow\Temperature.cs" />
     <Compile Include="Reflow\Ui\Pi\NotShuttingDownResponse.cs" />
     <Compile Include="OnDispose.cs" />
     <Compile Include="Reflow\Ui\Pi\SendApplicationStopAfterResponse.cs" />
@@ -187,6 +234,9 @@
     <Compile Include="Reflow\Ui\Home\IndexResponse.cs" />
     <Compile Include="Nancy\ResourceLinker.cs" />
     <Compile Include="RunningApplicationAttribute.cs" />
+    <Compile Include="Signalr\SignalrHubConfigurationModule.cs" />
+    <Compile Include="TypeInheritanceExtensions.cs" />
+    <Compile Include="UseJsonSerialisationFor.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">
@@ -196,6 +246,7 @@
     <EmbeddedResource Include="Reflow\Ui\Home\IndexView.cshtml">
       <LogicalName>Restall.HotPi.Reflow.Ui.Home.IndexView.cshtml</LogicalName>
     </EmbeddedResource>
+    <None Include="Reflow\Ui\Angular\build.cmd" />
   </ItemGroup>
   <ItemGroup>
     <None Include="FodyWeavers.xml" />
@@ -215,6 +266,24 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Reflow\Ui\Assets\favicon\favicon.ico">
       <LogicalName>Restall.HotPi.Reflow.Ui.assets.favicon.favicon.ico</LogicalName>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Reflow\Ui\Angular\.gitignore" />
+    <EmbeddedResource Include="Reflow\Ui\Angular\dist\scripts.bundle.js">
+      <LogicalName>Restall.HotPi.Reflow.Ui.assets.scripts.bundle.js</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reflow\Ui\Angular\dist\inline.bundle.js">
+      <LogicalName>Restall.HotPi.Reflow.Ui.assets.inline.bundle.js</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reflow\Ui\Angular\dist\main.bundle.js">
+      <LogicalName>Restall.HotPi.Reflow.Ui.assets.main.bundle.js</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reflow\Ui\Angular\dist\polyfills.bundle.js">
+      <LogicalName>Restall.HotPi.Reflow.Ui.assets.polyfills.bundle.js</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reflow\Ui\Angular\dist\styles.bundle.css">
+      <LogicalName>Restall.HotPi.Reflow.Ui.assets.styles.bundle.css</LogicalName>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

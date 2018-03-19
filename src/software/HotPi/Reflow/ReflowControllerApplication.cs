@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Threading;
-using Nancy.Hosting.Self;
 
 namespace Restall.HotPi.Reflow
 {
@@ -9,30 +8,39 @@ namespace Restall.HotPi.Reflow
 	{
 		[SuppressMessage("ReSharper", "NotAccessedField.Local", Justification = "Lifetime control is required - prevents premature garbage collection")]
 		private readonly EnsureSingleInstanceOfReflowApplication mutex;
-		private readonly Func<NancyHost> nancyHostFactory;
+		private readonly Func<IHostWebServer> webHostFactory;
+		private readonly Func<IHostReflowPlant> plantHostFactory;
 		private readonly ManualResetEventSlim stop;
 
-		public ReflowControllerApplication(EnsureSingleInstanceOfReflowApplication mutex, Func<NancyHost> nancyHostFactory)
+		public ReflowControllerApplication(
+			EnsureSingleInstanceOfReflowApplication mutex,
+			Func<IHostWebServer> webHostFactory,
+			Func<IHostReflowPlant> plantHostFactory)
 		{
 			this.mutex = mutex;
-			this.nancyHostFactory = nancyHostFactory;
+			this.webHostFactory = webHostFactory;
+			this.plantHostFactory = plantHostFactory;
 			this.stop = new ManualResetEventSlim();
 		}
 
 		public void Start()
 		{
-			var nancy = this.nancyHostFactory();
-			if (nancy == null)
-				throw new InvalidOperationException("NancyHost factory returned null");
+			var webHost = this.webHostFactory();
+			if (webHost == null)
+				throw new InvalidOperationException("Web Server Hosting factory returned null");
 
-			try
+			var plantHost = this.plantHostFactory();
+			if (plantHost == null)
+				throw new InvalidOperationException("Plant Hosting factory returned null");
+
+			plantHost.Start();
+			using (new OnDispose(() => plantHost.Stop()))
 			{
-				nancy.Start();
-				this.stop.Wait();
-			}
-			finally
-			{
-				nancy.Stop();
+				webHost.Start();
+				using (new OnDispose(() => webHost.Stop()))
+				{
+					this.stop.Wait();
+				}
 			}
 		}
 

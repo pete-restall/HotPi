@@ -4,18 +4,26 @@
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 	<head>
 		<meta charset="utf-8" />
-		<title>HotPi</title>
-		<base href="/" />
+		<title>HotPi Reflow Oven Controller</title>
+		<base href="/assets/" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<link rel="icon" type="image/png" sizes="192x192"  href="/assets/favicon/android-icon-192x192.png" />
-		<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon/favicon-32x32.png" />
-		<link rel="icon" type="image/png" sizes="96x96" href="/assets/favicon/favicon-96x96.png" />
-		<link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon/favicon-16x16.png" />
+		<link href="styles.bundle.css" rel="stylesheet" />
+		<link rel="icon" type="image/png" sizes="192x192"  href="favicon/android-icon-192x192.png" />
+		<link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png" />
+		<link rel="icon" type="image/png" sizes="96x96" href="favicon/favicon-96x96.png" />
+		<link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png" />
 	</head>
 	<body>
 		<script type="text/javascript" language="javascript">
-			window.hotpi.viewModel = @Html.AsJson(Model);
+			window.hotpi = window.hotpi || {};
+			(function(exports, undefined) {
+				exports.viewModel = @Html.AsJson(Model);
+			})(window.hotpi);
 		</script>
 		<app-root></app-root>
+		<script type="text/javascript" src="inline.bundle.js"></script>
+		<script type="text/javascript" src="polyfills.bundle.js"></script>
+		<script type="text/javascript" src="scripts.bundle.js"></Script>
+		<script type="text/javascript" src="main.bundle.js"></script>
 	</body>
 </html>
