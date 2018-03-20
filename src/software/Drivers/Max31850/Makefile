@@ -1,5 +1,5 @@
 CC=gcc
-CCARGS=-c -Wall -pedantic -fPIC
+CCARGS=-c -Wall -pedantic -fPIC -O3
 LD=ld
 LDARGS=-soname libhotpi-max31850.so.1 -shared
 LIBS=

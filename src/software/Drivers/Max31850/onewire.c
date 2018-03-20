@@ -89,7 +89,7 @@ static void onewireWriteBit(unsigned char bit)
 	bcm2835_delayMicroseconds(RECOVERY_US);
 }
 
-unsigned char EXPORT onewireReadByte(void)
+unsigned char NOEXPORT onewireReadByte(void)
 {
 	unsigned char byte = 0;
 	for (int i = 0; i < 8; i++)

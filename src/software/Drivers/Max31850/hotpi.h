@@ -3,7 +3,7 @@
 #include <limits.h>
 
 #define EXPORT __attribute__((visibility("default")))
-#define NOEXPORT __attribute__((visibility("internal")))
+#define NOEXPORT __attribute__((visibility("hidden")))
 
 #define ERROR (((unsigned int) INT_MAX) + 1)
 #define ERROR_WITH_ERRNO ERROR | ((INT_MAX >> 1) + 1)
