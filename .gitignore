@@ -8,3 +8,4 @@
 /src/software/**/*.user
 /src/software/packages
 .*.swp
+*.o
