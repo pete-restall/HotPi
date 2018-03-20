@@ -89,7 +89,7 @@
 			printf "My IP address is %s\n" "$_IP"
 		fi
 
-		su hotpi -c '/usr/bin/authbind --deep /usr/bin/mono /home/hotpi/bin/HotPi.exe >> /home/hotpi/run.log 2>&1 &'
+		su hotpi -c '/usr/bin/authbind --deep /usr/bin/mono /home/hotpi/bin/HotPi.exe >> /home/hotpi/run.log 2>&1' &
 
 		exit 0
 
