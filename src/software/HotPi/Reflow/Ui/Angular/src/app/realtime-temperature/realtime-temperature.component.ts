@@ -38,7 +38,6 @@ export class RealtimeTemperatureComponent implements OnInit, OnDestroy {
   }
 
   private onOvenTemperatureSampled(observed: OvenTemperatureSampled) {
-    console.log('TEMP IS ' + observed.temperature.celsius);
     if (this.temperatureData.length >= TEMPERATURE_BUFFER_SIZE) {
       this.temperatureData.shift();
     }
