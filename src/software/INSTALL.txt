@@ -43,25 +43,30 @@
 	$ sudo apt-get update
 	$ sudo apt-get install mono-complete
 
-6). Create a user (hotpi), group (hotpi) and home for the application:
+6). Optional - if using the Pi to compile the drivers, run:
+
+	$ cd Drivers
+	$ ./install-bcm2835.sh
+
+7). Create a user (hotpi), group (hotpi) and home for the application:
 
 	$ sudo addgroup hotpi
 	$ sudo adduser hotpi --gid 1001
 
-7). Copy the (built) application to /home/hotpi/bin
+8). Copy the (built) application to /home/hotpi/bin
 
-8). Setup sudo for the application:
+9). Setup sudo for the application:
 
 	$ TODO...
 
-9). Setup authbind for the application:
+10). Setup authbind for the application:
 
 	$ sudo apt-get install authbind
 	$ sudo touch /etc/authbind/byport/80
 	$ sudo chown root:hotpi /etc/authbind/byport/80
 	$ sudo chmod 710 /etc/authbind/byport/80
 
-10). Setup the /etc/rc.local script to run the application on boot:
+11). Setup the /etc/rc.local script to run the application on boot:
 
 	$ sudo vi /etc/rc.local
 
@@ -90,4 +95,4 @@
 
 	:wq
 
-11). Reboot and test the application runs...
+12). Reboot and test the application runs...
