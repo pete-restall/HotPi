@@ -247,10 +247,10 @@
     <Compile Include="Reflow\Gpio\GpioConnectionModule.cs" />
     <Compile Include="Reflow\Gpio\GpioPinChanged.cs" />
     <Compile Include="Reflow\Gpio\GpioPinObservable.cs" />
-    <Compile Include="Reflow\Watchdog\WatchdogTimerExpiredHub.cs" />
+    <Compile Include="Reflow\Watchdog\WatchdogChangedHub.cs" />
     <Compile Include="Reflow\Watchdog\Watchdog.cs" />
-    <Compile Include="Reflow\Watchdog\WatchdogTimerExpired.cs" />
-    <Compile Include="Reflow\Watchdog\WatchdogTimerExpiredPinObservable.cs" />
+    <Compile Include="Reflow\Watchdog\WatchdogChanged.cs" />
+    <Compile Include="Reflow\Watchdog\WatchdogChangedPinObservable.cs" />
     <Compile Include="Signalr\ObserverToHubBroadcastAdapterModule.cs" />
     <Compile Include="Signalr\SignalrJsonSerialisationModule.cs" />
     <Compile Include="JsonSerialisationModule.cs" />
