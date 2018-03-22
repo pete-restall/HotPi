@@ -204,6 +204,9 @@
     <Compile Include="IObserve.cs" />
     <Compile Include="MulticastObserverWithAggregateExceptions.cs" />
     <Compile Include="Reflow\DecimalTemperatureExtensions.cs" />
+    <Compile Include="Reflow\Gpio\DummyGpioConnectionDriver.cs" />
+    <Compile Include="Reflow\Gpio\GpioPinMappingModule.cs" />
+    <Compile Include="Reflow\Gpio\GpioPinAttribute.cs" />
     <Compile Include="Reflow\IReflowPlantProcess.cs" />
     <Compile Include="Reflow\OvenTemperatureSampledObservable.cs" />
     <Compile Include="Reflow\Thermocouple\Max31850\IExecuteMax31850CommandsInNearRealtime.cs" />
@@ -241,6 +244,13 @@
     <Compile Include="Reflow\Thermocouple\ThermocoupleMonitoringProcess.cs" />
     <Compile Include="Reflow\Thermocouple\ThermocoupleSampleToTemperatureMapper.cs" />
     <Compile Include="Reflow\TimerModule.cs" />
+    <Compile Include="Reflow\Gpio\GpioConnectionModule.cs" />
+    <Compile Include="Reflow\Gpio\GpioPinChanged.cs" />
+    <Compile Include="Reflow\Gpio\GpioPinObservable.cs" />
+    <Compile Include="Reflow\Watchdog\WatchdogTimerExpiredHub.cs" />
+    <Compile Include="Reflow\Watchdog\Watchdog.cs" />
+    <Compile Include="Reflow\Watchdog\WatchdogTimerExpired.cs" />
+    <Compile Include="Reflow\Watchdog\WatchdogTimerExpiredPinObservable.cs" />
     <Compile Include="Signalr\ObserverToHubBroadcastAdapterModule.cs" />
     <Compile Include="Signalr\SignalrJsonSerialisationModule.cs" />
     <Compile Include="JsonSerialisationModule.cs" />
@@ -298,6 +308,9 @@
   <ItemGroup>
     <Content Include="..\Drivers\Max31850\libhotpi-max31850.so.1.0.0">
       <Link>libhotpi-max31850.so.1.0.0</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="uname.exe">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <None Include="App.config">
