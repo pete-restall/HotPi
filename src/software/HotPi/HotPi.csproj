@@ -146,6 +146,22 @@
       <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Raspberry.IO, Version=3.1.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Raspberry.IO.GeneralPurpose3.3.1.1\lib\net40\Raspberry.IO.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Raspberry.IO.GeneralPurpose, Version=3.1.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Raspberry.IO.GeneralPurpose3.3.1.1\lib\net40\Raspberry.IO.GeneralPurpose.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Raspberry.IO.Interop, Version=3.1.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Raspberry.IO.GeneralPurpose3.3.1.1\lib\net40\Raspberry.IO.Interop.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Raspberry.System, Version=3.1.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Raspberry.System3.3.1.1\lib\net40\Raspberry.System.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Configuration" />
@@ -184,7 +200,58 @@
     <Compile Include="CodeAnalysisJustification.cs" />
     <Compile Include="ConventionsNinjectModule.cs" />
     <Compile Include="DoesNotParticipateInBindingConventionsAttribute.cs" />
+    <Compile Include="IMapper.cs" />
     <Compile Include="IObserve.cs" />
+    <Compile Include="MulticastObserverWithAggregateExceptions.cs" />
+    <Compile Include="Reflow\DecimalTemperatureExtensions.cs" />
+    <Compile Include="Reflow\Gpio\DummyGpioConnectionDriver.cs" />
+    <Compile Include="Reflow\Gpio\GpioPinMappingModule.cs" />
+    <Compile Include="Reflow\Gpio\GpioPinAttribute.cs" />
+    <Compile Include="Reflow\IReflowPlantProcess.cs" />
+    <Compile Include="Reflow\OvenTemperatureSampledObservable.cs" />
+    <Compile Include="Reflow\Thermocouple\Max31850\IExecuteMax31850CommandsInNearRealtime.cs" />
+    <Compile Include="Reflow\Thermocouple\Max31850\IHaveMax31850Settings.cs" />
+    <Compile Include="Reflow\Thermocouple\Max31850\IMax31850InitialisationInterop.cs" />
+    <Compile Include="Reflow\Thermocouple\Max31850\IMax31850ReadScratchpadInterop.cs" />
+    <Compile Include="Reflow\Thermocouple\Max31850\IMax31850SampleThermocoupleInterop.cs" />
+    <Compile Include="Reflow\Thermocouple\Max31850\Interop\Max31850ErrorInterop.cs" />
+    <Compile Include="Reflow\Thermocouple\Max31850\Interop\Max31850InitialisationInteropModule.cs" />
+    <Compile Include="Reflow\Thermocouple\Max31850\Interop\Max31850Interop.cs" />
+    <Compile Include="Reflow\Thermocouple\Max31850\Interop\Max31850ReadScratchpadInterop.cs" />
+    <Compile Include="Reflow\Thermocouple\Max31850\Interop\Max31850ReadScratchpadInteropModule.cs" />
+    <Compile Include="Reflow\Thermocouple\Max31850\Interop\Max31850SampleThermocoupleInterop.cs" />
+    <Compile Include="Reflow\Thermocouple\Max31850\Interop\Max31850SampleThermocoupleInteropModule.cs" />
+    <Compile Include="Reflow\Thermocouple\Max31850\Interop\NonPiMax31850InitialisationInterop.cs" />
+    <Compile Include="Reflow\Thermocouple\Max31850\Interop\NonPiMax31850ReadScratchpadInterop.cs" />
+    <Compile Include="Reflow\Thermocouple\Max31850\Interop\NonPiMax31850SampleThermocoupleInterop.cs" />
+    <Compile Include="Reflow\Thermocouple\Max31850\Max31850ColdJunctionErrorCompensation.cs" />
+    <Compile Include="Reflow\Thermocouple\Max31850\Interop\Max31850InitialisationInterop.cs" />
+    <Compile Include="Reflow\Thermocouple\Max31850\Max31850JThermocoupleSampleToVoltageMapper.cs" />
+    <Compile Include="Reflow\Thermocouple\Max31850\Max31850NearRealtimeCommandExecutor.cs" />
+    <Compile Include="Reflow\Thermocouple\Max31850\Max31850NearRealtimeCommandExecutorModule.cs" />
+    <Compile Include="Reflow\Thermocouple\Max31850\Max31850Settings.cs" />
+    <Compile Include="Reflow\Thermocouple\NistPolynomialJThermocoupleVoltageToTemperatureMapper.cs" />
+    <Compile Include="Reflow\Voltage.cs" />
+    <Compile Include="Reflow\ThermocoupleSampledObserverModule.cs" />
+    <Compile Include="Reflow\Thermocouple\Max31850\ByteBitExtensions.cs" />
+    <Compile Include="Reflow\Thermocouple\Max31850\EnumerableOfByteMax31850CrcExtensions.cs" />
+    <Compile Include="Reflow\Thermocouple\Max31850\Max31850SampleThermocoupleResponse.cs" />
+    <Compile Include="Reflow\Thermocouple\Max31850\Max31850ReadScratchpadResponse.cs" />
+    <Compile Include="Reflow\Thermocouple\ThermocoupleConversionFaults.cs" />
+    <Compile Include="Reflow\Thermocouple\ThermocoupleSample.cs" />
+    <Compile Include="Reflow\Thermocouple\ThermocoupleSampled.cs" />
+    <Compile Include="Reflow\Thermocouple\ThermocoupleSampler.cs" />
+    <Compile Include="Reflow\Thermocouple\ThermocoupleMonitoringProcess.cs" />
+    <Compile Include="Reflow\Thermocouple\ThermocoupleSampleToTemperatureMapper.cs" />
+    <Compile Include="Reflow\TimerModule.cs" />
+    <Compile Include="Reflow\Gpio\GpioConnectionModule.cs" />
+    <Compile Include="Reflow\Gpio\GpioPinChanged.cs" />
+    <Compile Include="Reflow\Gpio\GpioPinObservable.cs" />
+    <Compile Include="Reflow\Watchdog\WatchdogTimerExpiredHub.cs" />
+    <Compile Include="Reflow\Watchdog\Watchdog.cs" />
+    <Compile Include="Reflow\Watchdog\WatchdogTimerExpired.cs" />
+    <Compile Include="Reflow\Watchdog\WatchdogTimerExpiredPinObservable.cs" />
+    <Compile Include="Signalr\ObserverToHubBroadcastAdapterModule.cs" />
     <Compile Include="Signalr\SignalrJsonSerialisationModule.cs" />
     <Compile Include="JsonSerialisationModule.cs" />
     <Compile Include="Nancy\IHaveNancyConventions.cs" />
@@ -200,7 +267,7 @@
     <Compile Include="Signalr\SignalrNinjectDependencyResolver.cs" />
     <Compile Include="OwinWebServerHost.cs" />
     <Compile Include="Nancy\NancyRazorConfiguration.cs" />
-    <Compile Include="Reflow\DummyReflowPlant.cs" />
+    <Compile Include="Reflow\PcbReflowPlant.cs" />
     <Compile Include="Reflow\IHostReflowPlant.cs" />
     <Compile Include="Signalr\SignalrHubContextModule.cs" />
     <Compile Include="Reflow\OvenTemperatureSampled.cs" />
@@ -239,6 +306,13 @@
     <Compile Include="UseJsonSerialisationFor.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="..\Drivers\Max31850\libhotpi-max31850.so.1.0.0">
+      <Link>libhotpi-max31850.so.1.0.0</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="uname.exe">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="App.config">
       <SubType>Designer</SubType>
     </None>
@@ -287,18 +361,18 @@
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <Import Project="..\packages\Fody.2.4.4\build\Fody.targets" Condition="Exists('..\packages\Fody.2.4.4\build\Fody.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
-    <Error Condition="!Exists('..\packages\Fody.2.4.4\build\Fody.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Fody.2.4.4\build\Fody.targets'))" />
     <Error Condition="!Exists('..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets'))" />
     <Error Condition="!Exists('..\packages\Nancy.Viewengines.Razor.1.4.3\build\Nancy.ViewEngines.Razor.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Nancy.Viewengines.Razor.1.4.3\build\Nancy.ViewEngines.Razor.targets'))" />
     <Error Condition="!Exists('..\packages\Microsoft.Net.Compilers.2.6.1\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Net.Compilers.2.6.1\build\Microsoft.Net.Compilers.props'))" />
+    <Error Condition="!Exists('..\packages\Fody.2.4.6\build\Fody.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Fody.2.4.6\build\Fody.targets'))" />
   </Target>
   <Import Project="..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" />
   <Import Project="..\packages\Nancy.Viewengines.Razor.1.4.3\build\Nancy.ViewEngines.Razor.targets" Condition="Exists('..\packages\Nancy.Viewengines.Razor.1.4.3\build\Nancy.ViewEngines.Razor.targets')" />
+  <Import Project="..\packages\Fody.2.4.6\build\Fody.targets" Condition="Exists('..\packages\Fody.2.4.6\build\Fody.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

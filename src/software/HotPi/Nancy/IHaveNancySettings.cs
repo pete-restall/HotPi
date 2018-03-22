@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Restall.HotPi.Nancy
+﻿namespace Restall.HotPi.Nancy
 {
 	public interface IHaveNancySettings
 	{

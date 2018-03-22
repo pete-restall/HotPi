@@ -2,6 +2,7 @@
 
 namespace Restall.HotPi.Signalr
 {
+	[DoesNotParticipateInBindingConventions]
 	public class ObserverToHubBroadcastAdapter<TEvent> : IObserve<TEvent>
 	{
 		private readonly IHubContext<IObserve<TEvent>> hub;

@@ -1,12 +1,77 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+
+import { Observable } from 'rxjs/Observable';
+
+import { OvenTemperatureSampled } from '../oven-temperature-sampled-observable/oven-temperature-sampled';
+
+const TEMPERATURE_BUFFER_SIZE: number = 10 * 60;
+const PROFILE_COLOUR: string = '#ff00ff';
+const JUST_RIGHT_COLOUR: string = '#00ff00';
+const TOO_HOT_COLOUR: string = '#ff0000';
+const TOO_COLD_COLOUR: string = '#0000ff';
 
 @Component({
   selector: 'hotpi-realtime-temperature',
   templateUrl: './realtime-temperature.component.html',
   styleUrls: ['./realtime-temperature.component.css']
 })
-export class RealtimeTemperatureComponent {
-  private profileColour: string = '#ff00ff';
+export class RealtimeTemperatureComponent implements OnInit, OnDestroy {
+  private profileData: Array<any> = [];
+  private temperatureData: Array<any> = [];
+  private chart: any;
+  private ovenTemperatureSampledSubscription: any;
+
+  constructor(private ovenTemperatureSampled: Observable<OvenTemperatureSampled>) {
+  }
+
+  public ngOnInit() {
+    let _this = this;
+    this.ovenTemperatureSampledSubscription = this.ovenTemperatureSampled.subscribe(
+      (observed: OvenTemperatureSampled) => _this.onOvenTemperatureSampled(observed));
+  }
+
+  public chartOnInit(chart: any) {
+    if (typeof(chart) === 'undefined' || chart == null)
+      throw new ReferenceError('Invalid (undefined or null) ECharts instance passed to the onInit event.');
+
+    this.chart = chart;
+  }
+
+  private onOvenTemperatureSampled(observed: OvenTemperatureSampled) {
+    if (this.temperatureData.length >= TEMPERATURE_BUFFER_SIZE) {
+      this.temperatureData.shift();
+    }
+
+    this.temperatureData.push({
+      value: [observed.timestamp, observed.temperature.celsius],
+      itemStyle: { color: JUST_RIGHT_COLOUR }
+    });
+
+    if (typeof(this.chart) === 'undefined')
+      return;
+
+    this.chart.setOption({
+      series: [
+        {
+          name: 'PROFILE',
+          type: 'line',
+          areaStyle: {normal: {}},
+          data: this.profileData
+        },
+        {
+          name: 'CURRENT',
+          type: 'line',
+          areaStyle: {normal: {}},
+          data: this.temperatureData
+        }
+      ]
+	});
+  }
+
+  public ngOnDestroy() {
+    if (typeof(this.ovenTemperatureSampledSubscription) !== 'undefined' && this.ovenTemperatureSampledSubscription != null)
+      this.ovenTemperatureSampledSubscription.unsubscribe();
+  }
 
   public get chartOptions() {
     return {
@@ -68,48 +133,15 @@ export class RealtimeTemperatureComponent {
           name: 'PROFILE',
           type: 'line',
           areaStyle: {normal: {}},
-          data: this.createProfile()
+          data: []
         },
         {
           name: 'CURRENT',
           type: 'line',
           areaStyle: {normal: {}},
-          data: this.createCurrent()
+          data: []
         }
       ]
     };
-  }
-
-  // TODO: STUBS TO GENERATE SOME DUMMY DATA.  WITH REAL DATA, USE BLUE FOR BELOW PROFILE, RED FOR ABOVE PROFILE.
-  private createProfile(): any {
-    let series = new Array();
-    let datumTime: Date = new Date(0, 0, 0, 0, 0, 0);
-    let datumTemperature: number = 10;
-    for (let i = 0; i < 10; i++) {
-      series.push({
-        value: [datumTime, datumTemperature],
-        itemStyle: { color: this.profileColour }
-      });
-      datumTime = new Date(datumTime.getTime() + 60000);
-      datumTemperature += 10;
-    }
-
-    return series;
-  }
-
-  private createCurrent(): any {
-    let series = new Array();
-    let datumTime: Date = new Date(0, 0, 0, 0, 0, 0);
-    let datumTemperature: number = 20;
-    for (let i = 0; i < 10; i++) {
-      series.push({
-        value: [datumTime, datumTemperature],
-        itemStyle: { color: i % 2 == 0 ? '#ff0000' : '#0000ff' }
-      });
-      datumTime = new Date(datumTime.getTime() + 60000);
-      datumTemperature += 5;
-    }
-
-    return series;
   }
 }
