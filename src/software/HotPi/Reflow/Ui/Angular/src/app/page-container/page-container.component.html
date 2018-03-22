@@ -1,6 +1,9 @@
 <nb-layout>
 	<nb-layout-header fixed>HotPi Reflow Oven Controller</nb-layout-header>
-	<nb-sidebar right state="expanded">Oven Control</nb-sidebar>
+	<nb-sidebar right state="expanded">
+		<nb-sidebar-header>Oven Control</nb-sidebar-header>
+		<hotpi-reflow-controls></hotpi-reflow-controls>
+	</nb-sidebar>
 	<nb-layout-column>
 		<hotpi-realtime-temperature></hotpi-realtime-temperature>
 		<hotpi-watchdog></hotpi-watchdog>

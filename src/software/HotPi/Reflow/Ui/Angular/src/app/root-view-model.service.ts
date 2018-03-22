@@ -1,9 +1,11 @@
 import { Injectable } from '@angular/core';
 
+import { IHaveStartReflowLink } from './reflow-controls/i-have-start-reflow-link.interface';
+
 @Injectable()
-export class RootViewModelService {
+export class RootViewModelService implements IHaveStartReflowLink {
   public get shutdownLink(): string {
-    return this.viewModel.shutdownLink;
+    return this.viewModel.pi.shutdownLink;
   }
 
   private get viewModel(): any {
@@ -12,5 +14,9 @@ export class RootViewModelService {
 
   private get _window(): any {
     return window;
+  }
+
+  public get startReflowLink(): string {
+    return this.viewModel.reflow.startLink;
   }
 }
