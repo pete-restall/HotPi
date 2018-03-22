@@ -4,6 +4,7 @@ import { RouterModule } from '@angular/router';
 import { NbSidebarModule, NbLayoutModule, NbSidebarService } from '@nebular/theme';
 
 import { RealtimeTemperatureModule } from '../realtime-temperature/realtime-temperature.module';
+import { WatchdogModule } from '../watchdog/watchdog.module';
 import { PageContainerComponent } from './page-container.component';
 
 @NgModule({
@@ -12,7 +13,8 @@ import { PageContainerComponent } from './page-container.component';
     RouterModule,
     NbLayoutModule,
     NbSidebarModule,
-    RealtimeTemperatureModule
+    RealtimeTemperatureModule,
+    WatchdogModule
   ],
   exports: [PageContainerComponent],
   providers: [NbSidebarService],
