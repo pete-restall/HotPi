@@ -52,21 +52,20 @@
 
 	$ sudo addgroup hotpi
 	$ sudo adduser hotpi --gid 1001
+	$ sudo adduser hotpi gpio
 
 8). Copy the (built) application to /home/hotpi/bin
 
-9). Setup sudo for the application:
+9). Setup capabilities for the application (binding to port 80, near-realtime
+    scheduling):
 
-	$ TODO...
+	$ ### THIS IS INSECURE - BRUTE FORCE IS TO LOCK MONO TO THE HOTPI GROUP ###
 
-10). Setup authbind for the application:
+	$ sudo chmod o-x /usr/bin/mono-sgen
+	$ sudo chown root:hotpi /usr/bin/mono-sgen
+	$ sudo setcap cap_net_bind_service,cap_sys_nice+ep /usr/bin/mono-sgen
 
-	$ sudo apt-get install authbind
-	$ sudo touch /etc/authbind/byport/80
-	$ sudo chown root:hotpi /etc/authbind/byport/80
-	$ sudo chmod 710 /etc/authbind/byport/80
-
-11). Setup the /etc/rc.local script to run the application on boot:
+10). Setup the /etc/rc.local script to run the application on boot:
 
 	$ sudo vi /etc/rc.local
 
@@ -89,10 +88,10 @@
 			printf "My IP address is %s\n" "$_IP"
 		fi
 
-		su hotpi -c '/usr/bin/authbind --deep /usr/bin/mono /home/hotpi/bin/HotPi.exe >> /home/hotpi/run.log 2>&1' &
+		su hotpi -c '/usr/bin/mono /home/hotpi/bin/HotPi.exe >> /home/hotpi/run.log 2>&1' &
 
 		exit 0
 
 	:wq
 
-12). Reboot and test the application runs...
+11). Reboot and test the application runs...
