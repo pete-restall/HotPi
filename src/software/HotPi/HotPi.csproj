@@ -50,8 +50,8 @@
       <HintPath>..\packages\HtmlTags.5.0.2\lib\net45\HtmlTags.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Microsoft.AspNet.SignalR.Core, Version=2.2.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.AspNet.SignalR.Core.2.2.2\lib\net45\Microsoft.AspNet.SignalR.Core.dll</HintPath>
+    <Reference Include="Microsoft.AspNet.SignalR.Core, Version=2.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.SignalR.Core.2.2.3\lib\net45\Microsoft.AspNet.SignalR.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.AspNet.SignalR.Owin, Version=1.2.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -106,8 +106,8 @@
       <HintPath>..\packages\Nancy.Owin.1.4.1\lib\net40\Nancy.Owin.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Nancy.ServiceRouting, Version=2.2.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Nancy.ServiceRouting.2.2.0\lib\net40-Client\Nancy.ServiceRouting.dll</HintPath>
+    <Reference Include="Nancy.ServiceRouting, Version=2.3.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Nancy.ServiceRouting.2.3.1\lib\net40-client\Nancy.ServiceRouting.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Nancy.ViewEngines.Razor, Version=1.4.2.0, Culture=neutral, processorArchitecture=MSIL">
@@ -233,6 +233,9 @@
     <Compile Include="Reflow\Thermocouple\NistPolynomialJThermocoupleVoltageToTemperatureMapper.cs" />
     <Compile Include="Reflow\Ui\Home\PiResources.cs" />
     <Compile Include="Reflow\Ui\Home\ReflowResources.cs" />
+    <Compile Include="Reflow\Ui\Reflow\ReflowService.cs" />
+    <Compile Include="Reflow\Ui\Reflow\StartRequest.cs" />
+    <Compile Include="Reflow\Ui\Reflow\StartResponse.cs" />
     <Compile Include="Reflow\Voltage.cs" />
     <Compile Include="Reflow\ThermocoupleSampledObserverModule.cs" />
     <Compile Include="Reflow\Thermocouple\Max31850\ByteBitExtensions.cs" />
@@ -318,7 +321,9 @@
     <None Include="App.config">
       <SubType>Designer</SubType>
     </None>
-    <None Include="packages.config" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
     <EmbeddedResource Include="Reflow\Ui\Home\IndexView.cshtml">
       <LogicalName>Restall.HotPi.Reflow.Ui.Home.IndexView.cshtml</LogicalName>
     </EmbeddedResource>
