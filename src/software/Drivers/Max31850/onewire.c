@@ -62,6 +62,11 @@ static int onewireIsLow(void)
 	return bcm2835_gpio_lev(onewire) == LOW;
 }
 
+void NOEXPORT onewireWriteSkipRom(void)
+{
+	onewireWriteByte(0xcc);
+}
+
 void NOEXPORT onewireWriteByte(unsigned char byte)
 {
 	for (int i = 0; i < 8; i++)

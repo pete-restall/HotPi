@@ -36,14 +36,14 @@ int EXPORT max31850SampleThermocouple(void)
 	if (result != 0)
 		return result;
 
+	onewireWriteSkipRom();
 	onewireWriteByte(0x44);
-	bcm2835_delay(75);
-	for (int i = 0; i < 3; i++)
+	bcm2835_delay(65);
+	for (int i = 0; i < 4; i++)
 	{
+		bcm2835_delay(10);
 		if (onewireReadBit())
 			return ERROR_NONE;
-
-		bcm2835_delay(10);
 	}
 
 	return ERROR_SAMPLE_TIME_TOO_LONG;
@@ -66,6 +66,7 @@ int EXPORT max31850ReadScratchpad(Scratchpad *const scratchpad)
 	if (result != 0)
 		return result;
 
+	onewireWriteSkipRom();
 	onewireWriteByte(0xbe);
 	for (size_t i = 0; i < sizeof(scratchpad->buffer); i++)
 		scratchpad->buffer[i] = onewireReadByte();

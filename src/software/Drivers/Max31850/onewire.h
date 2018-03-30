@@ -5,6 +5,7 @@
 int onewireInitialise(void);
 void onewireShutdown(void);
 int onewireReset(void);
+void onewireWriteSkipRom(void);
 void onewireWriteByte(unsigned char byte);
 unsigned char onewireReadByte(void);
 unsigned char onewireReadBit(void);
