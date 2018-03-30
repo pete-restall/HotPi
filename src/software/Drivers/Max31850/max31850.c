@@ -67,7 +67,7 @@ int EXPORT max31850ReadScratchpad(Scratchpad *const scratchpad)
 		return result;
 
 	onewireWriteByte(0xbe);
-	for (int i = 0; i < 9; i++)
+	for (size_t i = 0; i < sizeof(scratchpad->buffer); i++)
 		scratchpad->buffer[i] = onewireReadByte();
 
 	return ERROR_NONE;
