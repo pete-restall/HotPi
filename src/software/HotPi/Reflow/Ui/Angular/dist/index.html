@@ -1,4 +1,7 @@
 <!doctype html><html lang="en"><head><meta charset="utf-8"><title>Hotpi Reflow Oven Controller</title><base href="/assets"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="icon" type="image/x-icon" href="favicon.ico"><link href="styles.bundle.css" rel="stylesheet"/></head><body><script type="text/javascript" language="javascript">window.hotpi = window.hotpi || {};
-    (function(exports, undefined) {
-      exports.viewModel = {"shutdownLink": "/pi/shutdown"};
-    })(window.hotpi);</script><app-root></app-root><script type="text/javascript" src="inline.bundle.js"></script><script type="text/javascript" src="polyfills.bundle.js"></script><script type="text/javascript" src="scripts.bundle.js"></script><script type="text/javascript" src="main.bundle.js"></script></body></html>
+			(function(exports, undefined) {
+				exports.viewModel = {
+					pi: { shutdownLink: "/pi/shutdown" },
+					reflow: { startLink: "/reflow" }
+				};
+			})(window.hotpi);</script><app-root></app-root><script type="text/javascript" src="inline.bundle.js"></script><script type="text/javascript" src="polyfills.bundle.js"></script><script type="text/javascript" src="scripts.bundle.js"></script><script type="text/javascript" src="main.bundle.js"></script></body></html>

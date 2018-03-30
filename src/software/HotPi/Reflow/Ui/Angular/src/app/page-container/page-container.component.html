@@ -1,8 +1,12 @@
 <nb-layout>
 	<nb-layout-header fixed>HotPi Reflow Oven Controller</nb-layout-header>
-	<nb-sidebar right state="expanded">Sidebar Content</nb-sidebar>
+	<nb-sidebar right state="expanded">
+		<nb-sidebar-header>Oven Control</nb-sidebar-header>
+		<hotpi-reflow-controls></hotpi-reflow-controls>
+	</nb-sidebar>
 	<nb-layout-column>
 		<hotpi-realtime-temperature></hotpi-realtime-temperature>
+		<hotpi-watchdog></hotpi-watchdog>
 	</nb-layout-column>
 	<nb-layout-footer fixed>Created by Pete Restall &lt;<a href="mailto:pete@restall.net">pete@restall.net</a>&gt; 2018 and released under the MIT licence.</nb-layout-footer>
 </nb-layout>

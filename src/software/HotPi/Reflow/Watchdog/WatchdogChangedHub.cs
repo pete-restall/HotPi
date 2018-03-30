@@ -2,9 +2,9 @@
 
 namespace Restall.HotPi.Reflow.Watchdog
 {
-	public class WatchdogTimerExpiredHub : Hub<IObserve<WatchdogTimerExpired>>
+	public class WatchdogChangedHub : Hub<IObserve<WatchdogChanged>>
 	{
-		public void Observe(WatchdogTimerExpired observed)
+		public void Observe(WatchdogChanged observed)
 		{
 			this.Clients.All.Observe(observed);
 		}

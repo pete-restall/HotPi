@@ -1,16 +1,18 @@
-﻿using System;
-using System.Diagnostics.CodeAnalysis;
+﻿using System.Diagnostics.CodeAnalysis;
 
 namespace Restall.HotPi.Reflow.Ui.Home
 {
+	[SuppressMessage("ReSharper", "AutoPropertyCanBeMadeGetOnly.Local", Justification = CodeAnalysisJustification.ForSerialisation)]
 	public class IndexResponse
 	{
-		public IndexResponse(Uri shutdownLink)
+		public IndexResponse(PiResources pi, ReflowResources reflow)
 		{
-			this.ShutdownLink = shutdownLink;
+			this.Pi = pi;
+			this.Reflow = reflow;
 		}
 
-		[SuppressMessage("ReSharper", "AutoPropertyCanBeMadeGetOnly.Local", Justification = CodeAnalysisJustification.ForSerialisation)]
-		public Uri ShutdownLink { get; private set; }
+		public PiResources Pi { get; private set; }
+
+		public ReflowResources Reflow { get; private set; }
 	}
 }

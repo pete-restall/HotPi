@@ -1,5 +1,4 @@
-﻿using System;
-using System.Configuration;
+﻿using System.Configuration;
 using Restall.HotPi.Nancy;
 
 namespace Restall.HotPi.Reflow
@@ -8,7 +7,7 @@ namespace Restall.HotPi.Reflow
 	{
 		public NancySettings(ReflowControllerApplicationCommandLineArguments args)
 		{
-			this.Host = args.UiHost != string.Empty
+			this.Host = !string.IsNullOrWhiteSpace(args.UiHost)
 				? args.UiHost
 				: FromAppSettingsOrDefault("ui:nancy/Host", "http://+:80/");
 		}

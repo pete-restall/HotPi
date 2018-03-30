@@ -1,4 +1,5 @@
-﻿using Restall.HotPi.Nancy;
+﻿using System;
+using Restall.HotPi.Nancy;
 
 namespace Restall.HotPi.Reflow.Ui.Home
 {
@@ -13,7 +14,9 @@ namespace Restall.HotPi.Reflow.Ui.Home
 
 		public IndexResponse Index(IndexRequest request)
 		{
-			return new IndexResponse(this.resources.RelativeUriFor("pi:shutdown"));
+			return new IndexResponse(
+				new PiResources(this.resources.RelativeUriFor("pi:shutdown")),
+				new ReflowResources(new Uri("http://www.example.com/not-yet-implemented")));
 		}
 	}
 }

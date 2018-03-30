@@ -231,6 +231,8 @@
     <Compile Include="Reflow\Thermocouple\Max31850\Max31850NearRealtimeCommandExecutorModule.cs" />
     <Compile Include="Reflow\Thermocouple\Max31850\Max31850Settings.cs" />
     <Compile Include="Reflow\Thermocouple\NistPolynomialJThermocoupleVoltageToTemperatureMapper.cs" />
+    <Compile Include="Reflow\Ui\Home\PiResources.cs" />
+    <Compile Include="Reflow\Ui\Home\ReflowResources.cs" />
     <Compile Include="Reflow\Voltage.cs" />
     <Compile Include="Reflow\ThermocoupleSampledObserverModule.cs" />
     <Compile Include="Reflow\Thermocouple\Max31850\ByteBitExtensions.cs" />
@@ -247,10 +249,10 @@
     <Compile Include="Reflow\Gpio\GpioConnectionModule.cs" />
     <Compile Include="Reflow\Gpio\GpioPinChanged.cs" />
     <Compile Include="Reflow\Gpio\GpioPinObservable.cs" />
-    <Compile Include="Reflow\Watchdog\WatchdogTimerExpiredHub.cs" />
+    <Compile Include="Reflow\Watchdog\WatchdogChangedHub.cs" />
     <Compile Include="Reflow\Watchdog\Watchdog.cs" />
-    <Compile Include="Reflow\Watchdog\WatchdogTimerExpired.cs" />
-    <Compile Include="Reflow\Watchdog\WatchdogTimerExpiredPinObservable.cs" />
+    <Compile Include="Reflow\Watchdog\WatchdogChanged.cs" />
+    <Compile Include="Reflow\Watchdog\WatchdogChangedPinObservable.cs" />
     <Compile Include="Signalr\ObserverToHubBroadcastAdapterModule.cs" />
     <Compile Include="Signalr\SignalrJsonSerialisationModule.cs" />
     <Compile Include="JsonSerialisationModule.cs" />

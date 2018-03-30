@@ -1,16 +1,16 @@
 ﻿using System;
 using System.Diagnostics.CodeAnalysis;
 
-namespace Restall.HotPi.Reflow.Watchdog
+namespace Restall.HotPi.Reflow.Ui.Home
 {
-	public class WatchdogTimerExpired
+	public class ReflowResources
 	{
-		public WatchdogTimerExpired(DateTime timestamp)
+		public ReflowResources(Uri startLink)
 		{
-			this.Timestamp = timestamp;
+			this.StartLink = startLink;
 		}
 
 		[SuppressMessage("ReSharper", "AutoPropertyCanBeMadeGetOnly.Local", Justification = CodeAnalysisJustification.ForSerialisation)]
-		public DateTime Timestamp { get; private set; }
+		public Uri StartLink { get; private set; }
 	}
 }

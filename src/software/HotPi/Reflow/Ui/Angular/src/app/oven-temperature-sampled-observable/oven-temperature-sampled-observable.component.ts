@@ -21,12 +21,12 @@ import { Temperature } from './temperature';
 @Hub({ hubName: 'ovenTemperatureSampledHub' })
 export class OvenTemperatureSampledObservableComponent implements OnInit, OnDestroy {
   private connected: boolean;
-  private hubWrapper: HubWrapper;
+  private hub: HubWrapper;
   private observable: Observable<OvenTemperatureSampled>;
   private subscribers: any;
 
   constructor(private hubService: HubService) {
-    this.hubWrapper = hubService.register(this);
+    this.hub = hubService.register(this);
 
 	let outer = this;
     this.observable = new Observable<OvenTemperatureSampled>(subscribers => {
@@ -39,7 +39,7 @@ export class OvenTemperatureSampledObservableComponent implements OnInit, OnDest
   }
 
   public ngOnDestroy() {
-    this.hubWrapper.unregister();
+    this.hub.unregister();
   }
 
   @HubSubscription()
