@@ -5,8 +5,8 @@
 #define EXPORT __attribute__((visibility("default")))
 #define NOEXPORT __attribute__((visibility("hidden")))
 
-#define ERROR (((unsigned int) INT_MAX) + 1)
-#define ERROR_WITH_ERRNO ERROR | ((INT_MAX >> 1) + 1)
+#define ERROR (((unsigned int) -1) & ~0x7fffffffu)
+#define ERROR_WITH_ERRNO (ERROR | 0x40000000)
 
 #define ERROR_NONE 0
 #define ERROR_INIT_SCHEDULER (ERROR_WITH_ERRNO | 1)

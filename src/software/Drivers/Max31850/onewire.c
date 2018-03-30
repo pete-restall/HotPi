@@ -62,6 +62,11 @@ static int onewireIsLow(void)
 	return bcm2835_gpio_lev(onewire) == LOW;
 }
 
+void NOEXPORT onewireWriteSkipRom(void)
+{
+	onewireWriteByte(0xcc);
+}
+
 void NOEXPORT onewireWriteByte(unsigned char byte)
 {
 	for (int i = 0; i < 8; i++)
@@ -93,10 +98,7 @@ unsigned char NOEXPORT onewireReadByte(void)
 {
 	unsigned char byte = 0;
 	for (int i = 0; i < 8; i++)
-	{
-		byte <<= 1;
-		byte |= onewireReadBit();
-	}
+		byte |= onewireReadBit() << i;
 
 	return byte;
 }
@@ -107,10 +109,10 @@ unsigned char NOEXPORT onewireReadBit(void)
 	onewireDriveLow();
 	bcm2835_delayMicroseconds(MIN_PULSE_US);
 	onewireTristate();
-	bcm2835_delayMicroseconds(MAX_RISE_TIME_US + 2);
+	bcm2835_delayMicroseconds(MAX_RISE_TIME_US + 4);
 	bit = onewireIsLow() ? 0 : 1;
 	bcm2835_delayMicroseconds(
-		60 - MAX_RISE_TIME_US - 2 - MIN_PULSE_US + RECOVERY_US);
+		60 - MAX_RISE_TIME_US - 4 - MIN_PULSE_US + RECOVERY_US);
 
 	return bit;
 }
