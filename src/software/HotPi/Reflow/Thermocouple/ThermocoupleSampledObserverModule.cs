@@ -1,7 +1,6 @@
 ﻿using Ninject.Modules;
-using Restall.HotPi.Reflow.Thermocouple;
 
-namespace Restall.HotPi.Reflow
+namespace Restall.HotPi.Reflow.Thermocouple
 {
 	public class ThermocoupleSampledObserverModule : NinjectModule
 	{

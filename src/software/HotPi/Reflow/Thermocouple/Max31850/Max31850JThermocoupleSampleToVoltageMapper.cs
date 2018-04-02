@@ -7,7 +7,7 @@
 		public Voltage Map(ThermocoupleSample obj)
 		{
 			var uncompensatedTemperature = obj.ThermocoupleTemperature.Kelvin - obj.ColdJunctionTemperature.Kelvin;
-			return new Voltage(uncompensatedTemperature / LinearCoefficientJ);
+			return new Voltage(uncompensatedTemperature * LinearCoefficientJ);
 		}
 	}
 }

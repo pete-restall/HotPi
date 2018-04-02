@@ -217,7 +217,7 @@
     <Compile Include="Reflow\Gpio\GpioPinMappingModule.cs" />
     <Compile Include="Reflow\Gpio\GpioPinAttribute.cs" />
     <Compile Include="Reflow\IReflowPlantProcess.cs" />
-    <Compile Include="Reflow\OvenTemperatureSampledObservable.cs" />
+    <Compile Include="Reflow\Oven\OvenTemperatureSampledObservable.cs" />
     <Compile Include="Reflow\Controller\PidController.cs" />
     <Compile Include="Reflow\Controller\ReflowZone.cs" />
     <Compile Include="Reflow\Controller\ReflowProcessController.cs" />
@@ -243,7 +243,6 @@
     <Compile Include="Reflow\Thermocouple\Max31850\Max31850NearRealtimeCommandExecutorModule.cs" />
     <Compile Include="Reflow\Thermocouple\Max31850\Max31850Settings.cs" />
     <Compile Include="Reflow\Thermocouple\NistPolynomialJThermocoupleVoltageToTemperatureMapper.cs" />
-    <Compile Include="Reflow\Thermocouple\ThermocoupleSampledConsoleObserver.cs" />
     <Compile Include="Reflow\Tolerance.cs" />
     <Compile Include="Reflow\ToleranceCheck.cs" />
     <Compile Include="Reflow\Ui\Home\PiResources.cs" />
@@ -252,7 +251,7 @@
     <Compile Include="Reflow\Ui\Reflow\StartRequest.cs" />
     <Compile Include="Reflow\Ui\Reflow\StartResponse.cs" />
     <Compile Include="Reflow\Voltage.cs" />
-    <Compile Include="Reflow\ThermocoupleSampledObserverModule.cs" />
+    <Compile Include="Reflow\Thermocouple\ThermocoupleSampledObserverModule.cs" />
     <Compile Include="Reflow\Thermocouple\Max31850\ByteBitExtensions.cs" />
     <Compile Include="Reflow\Thermocouple\Max31850\EnumerableOfByteMax31850CrcExtensions.cs" />
     <Compile Include="Reflow\Thermocouple\Max31850\Max31850SampleThermocoupleResponse.cs" />
@@ -290,8 +289,8 @@
     <Compile Include="Reflow\PcbReflowPlant.cs" />
     <Compile Include="Reflow\IHostReflowPlant.cs" />
     <Compile Include="Signalr\SignalrHubContextModule.cs" />
-    <Compile Include="Reflow\OvenTemperatureSampled.cs" />
-    <Compile Include="Reflow\OvenTemperatureSampledHub.cs" />
+    <Compile Include="Reflow\Oven\OvenTemperatureSampled.cs" />
+    <Compile Include="Reflow\Oven\OvenTemperatureSampledHub.cs" />
     <Compile Include="Reflow\NancySettings.cs" />
     <Compile Include="Nancy\NancyStaticResourceConventions.cs" />
     <Compile Include="Nancy\NancyViewConventions.cs" />

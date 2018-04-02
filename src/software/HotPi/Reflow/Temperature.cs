@@ -54,10 +54,5 @@ namespace Restall.HotPi.Reflow
 		{
 			return this.Kelvin.GetHashCode();
 		}
-
-		public static Temperature operator +(Temperature a, Temperature b)
-		{
-			return new Temperature(a.Kelvin + b.Kelvin);
-		}
 	}
 }

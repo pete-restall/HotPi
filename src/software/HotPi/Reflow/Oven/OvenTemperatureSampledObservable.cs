@@ -1,6 +1,6 @@
 ﻿using Restall.HotPi.Reflow.Thermocouple;
 
-namespace Restall.HotPi.Reflow
+namespace Restall.HotPi.Reflow.Oven
 {
 	public class OvenTemperatureSampledObservable : IObserve<ThermocoupleSampled>
 	{
@@ -15,7 +15,7 @@ namespace Restall.HotPi.Reflow
 			this.temperatureMapper = temperatureMapper;
 		}
 
-		public void Observe(ThermocoupleSampled observed)
+		void IObserve<ThermocoupleSampled>.Observe(ThermocoupleSampled observed)
 		{
 			if (observed.Sample.ConversionFaults.AnyFault)
 				return;
