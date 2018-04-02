@@ -9,3 +9,4 @@
 /src/software/packages
 .*.swp
 *.o
+.vs
