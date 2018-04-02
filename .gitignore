@@ -7,6 +7,8 @@
 /src/software/**/.vs
 /src/software/**/*.user
 /src/software/packages
+/src/software/Utilities/cwrsync/home
+!/src/software/Utilities/cwrsync/bin
+.vs
 .*.swp
 *.o
-.vs
