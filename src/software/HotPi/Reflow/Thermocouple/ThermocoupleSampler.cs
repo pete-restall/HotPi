@@ -8,15 +8,18 @@ namespace Restall.HotPi.Reflow.Thermocouple
 		private readonly IExecuteMax31850CommandsInNearRealtime max31850;
 		private readonly IMax31850SampleThermocoupleInterop sampleInterop;
 		private readonly IMax31850ReadScratchpadInterop scratchpadInterop;
+		private readonly Func<DateTime> now;
 
 		public ThermocoupleSampler(
 			IExecuteMax31850CommandsInNearRealtime max31850,
 			IMax31850SampleThermocoupleInterop sampleInterop,
-			IMax31850ReadScratchpadInterop scratchpadInterop)
+			IMax31850ReadScratchpadInterop scratchpadInterop,
+			Func<DateTime> now)
 		{
 			this.max31850 = max31850;
 			this.sampleInterop = sampleInterop;
 			this.scratchpadInterop = scratchpadInterop;
+			this.now = now;
 		}
 
 		public ThermocoupleSample Read()
@@ -28,7 +31,7 @@ namespace Restall.HotPi.Reflow.Thermocouple
 			catch (TimeoutException)
 			{
 				return new ThermocoupleSample(
-					DateTime.Now,
+					this.now(),
 					new ThermocoupleConversionFaults(timeout: true),
 					Temperature.Undefined,
 					Temperature.Undefined);

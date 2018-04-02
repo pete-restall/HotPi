@@ -5,10 +5,18 @@ namespace Restall.HotPi.Reflow
 	[Verb("reflow", HelpText = "Main Reflow Application")]
 	public class ReflowControllerApplicationCommandLineArguments
 	{
-		public ReflowControllerApplicationCommandLineArguments(string uiHost, decimal? max31850ColdJunctionStaticErrorInCelsius)
+		public ReflowControllerApplicationCommandLineArguments(
+			string uiHost,
+			decimal? max31850ColdJunctionStaticErrorInCelsius,
+			double? pidKp,
+			double? pidKi,
+			double? pidKd)
 		{
 			this.UiHost = uiHost;
 			this.Max31850ColdJunctionStaticErrorInCelsius = max31850ColdJunctionStaticErrorInCelsius;
+			this.PidKp = pidKp;
+			this.PidKi = pidKi;
+			this.PidKd = pidKd;
 		}
 
 		[Option(longName: "ui-host", shortName: 'u', Default = "", HelpText = "The URL that will host the UI")]
@@ -16,5 +24,14 @@ namespace Restall.HotPi.Reflow
 
 		[Option(longName: "max31850-cjc-error-celsius", Default = null, HelpText = "The static error, in Celsius, of the MAX31850 Cold Junction Temperature sensor")]
 		public decimal? Max31850ColdJunctionStaticErrorInCelsius { get; }
+
+		[Option(longName: "pid-kp", Default = null, HelpText = "The Proportional coefficient (Kp) of the PID Controller")]
+		public double? PidKp { get; }
+
+		[Option(longName: "pid-ki", Default = null, HelpText = "The Integral coefficient (Ki) of the PID Controller")]
+		public double? PidKi { get; }
+
+		[Option(longName: "pid-kd", Default = null, HelpText = "The Derivative coefficient (Kd) of the PID Controller")]
+		public double? PidKd { get; }
 	}
 }

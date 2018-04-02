@@ -8,12 +8,18 @@ namespace Restall.HotPi.Reflow.Thermocouple
 		private readonly ITimer timer;
 		private readonly ThermocoupleSampler sampler;
 		private readonly IObserve<ThermocoupleSampled> observer;
+		private readonly Func<DateTime> now;
 
-		public ThermocoupleMonitoringProcess(ITimer timer, ThermocoupleSampler sampler, IObserve<ThermocoupleSampled> observer)
+		public ThermocoupleMonitoringProcess(
+			ITimer timer,
+			ThermocoupleSampler sampler,
+			IObserve<ThermocoupleSampled> observer,
+			Func<DateTime> now)
 		{
 			this.timer = timer;
 			this.sampler = sampler;
 			this.observer = observer;
+			this.now = now;
 		}
 
 		public void Start()
@@ -27,7 +33,7 @@ namespace Restall.HotPi.Reflow.Thermocouple
 		{
 			try
 			{
-				var timestamp = DateTime.Now;
+				var timestamp = this.now();
 				var sample = this.sampler.Read();
 				this.observer.Observe(new ThermocoupleSampled(timestamp, sample));
 			}

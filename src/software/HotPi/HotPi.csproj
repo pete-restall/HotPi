@@ -199,16 +199,28 @@
     <Compile Include="AllTypes.cs" />
     <Compile Include="CodeAnalysisJustification.cs" />
     <Compile Include="ConventionsNinjectModule.cs" />
+    <Compile Include="DateTimeModule.cs" />
     <Compile Include="DoesNotParticipateInBindingConventionsAttribute.cs" />
     <Compile Include="IMapper.cs" />
     <Compile Include="IObserve.cs" />
     <Compile Include="MulticastObserverWithAggregateExceptions.cs" />
+    <Compile Include="Reflow\Controller\IHavePidControllerSettings.cs" />
+    <Compile Include="Reflow\Controller\IReflowProfileSegment.cs" />
+    <Compile Include="Reflow\Controller\RampSegment.cs" />
+    <Compile Include="Reflow\Controller\ReflowProcessContext.cs" />
+    <Compile Include="Reflow\IControlReflowProcess.cs" />
+    <Compile Include="Reflow\Controller\IProvideReflowTemperatureSetpoints.cs" />
+    <Compile Include="Reflow\Controller\PidControllerSettings.cs" />
+    <Compile Include="Reflow\Controller\PidControllerAdjusted.cs" />
     <Compile Include="Reflow\DecimalTemperatureExtensions.cs" />
     <Compile Include="Reflow\Gpio\DummyGpioConnectionDriver.cs" />
     <Compile Include="Reflow\Gpio\GpioPinMappingModule.cs" />
     <Compile Include="Reflow\Gpio\GpioPinAttribute.cs" />
     <Compile Include="Reflow\IReflowPlantProcess.cs" />
     <Compile Include="Reflow\OvenTemperatureSampledObservable.cs" />
+    <Compile Include="Reflow\Controller\PidController.cs" />
+    <Compile Include="Reflow\Controller\ReflowZone.cs" />
+    <Compile Include="Reflow\Controller\ReflowProcessController.cs" />
     <Compile Include="Reflow\Thermocouple\Max31850\IExecuteMax31850CommandsInNearRealtime.cs" />
     <Compile Include="Reflow\Thermocouple\Max31850\IHaveMax31850Settings.cs" />
     <Compile Include="Reflow\Thermocouple\Max31850\IMax31850InitialisationInterop.cs" />
@@ -231,6 +243,9 @@
     <Compile Include="Reflow\Thermocouple\Max31850\Max31850NearRealtimeCommandExecutorModule.cs" />
     <Compile Include="Reflow\Thermocouple\Max31850\Max31850Settings.cs" />
     <Compile Include="Reflow\Thermocouple\NistPolynomialJThermocoupleVoltageToTemperatureMapper.cs" />
+    <Compile Include="Reflow\Thermocouple\ThermocoupleSampledConsoleObserver.cs" />
+    <Compile Include="Reflow\Tolerance.cs" />
+    <Compile Include="Reflow\ToleranceCheck.cs" />
     <Compile Include="Reflow\Ui\Home\PiResources.cs" />
     <Compile Include="Reflow\Ui\Home\ReflowResources.cs" />
     <Compile Include="Reflow\Ui\Reflow\ReflowService.cs" />
@@ -367,6 +382,7 @@
       <LogicalName>Restall.HotPi.Reflow.Ui.assets.styles.bundle.css</LogicalName>
     </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
