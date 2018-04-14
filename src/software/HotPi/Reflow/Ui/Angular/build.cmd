@@ -1,1 +1,1 @@
-ng build --prod --build-optimizer --base-href /assets --output-hashing none
+ng build --prod --build-optimizer --base-href / --output-hashing none
