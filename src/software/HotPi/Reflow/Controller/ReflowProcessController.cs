@@ -1,48 +1,120 @@
-﻿using System.Collections.Generic;
+﻿using System;
 using System.Linq;
+using NullGuard;
+using Restall.HotPi.Reflow.Profiles;
 
 namespace Restall.HotPi.Reflow.Controller
 {
 	public class ReflowProcessController : IControlReflowProcess, IProvideReflowTemperatureSetpoints, IObserve<PidControllerAdjusted>
 	{
-		private readonly object sync = new object();
-		private ReflowZone[] zones = new ReflowZone[0];
-		private ReflowProcessContext context;
-
-		bool IControlReflowProcess.Start(params ReflowZone[] zones)
+		private interface IRunningState
 		{
-			return ((IControlReflowProcess) this).Start((IEnumerable<ReflowZone>) zones);
+			IRunningState CloneWith(ReflowProcessContext context);
+
+			StartProcessRunCommand Running { get; }
+
+			Tuple<Temperature, bool> GetNextSetpoint();
 		}
 
-		bool IControlReflowProcess.Start(IEnumerable<ReflowZone> zones)
+		private class StoppedState : IRunningState
 		{
-			lock (this.sync)
+			public IRunningState CloneWith(ReflowProcessContext context)
 			{
-				if (this.zones.Length > 0)
-					return false;
+				return this;
+			}
 
-				this.zones = zones.ToArray();
-				return this.zones.Length > 0;
+			[AllowNull]
+			public StartProcessRunCommand Running => null;
+
+			public Tuple<Temperature, bool> GetNextSetpoint()
+			{
+				return Tuple.Create(Temperature.Undefined, true);
 			}
 		}
 
-		void IControlReflowProcess.Stop()
+		private class RunningState : IRunningState
 		{
-			this.zones = new ReflowZone[0];
+			private readonly ReflowZone[] zones;
+			private readonly ReflowProcessContext context;
+
+			public RunningState(StartProcessRunCommand running, ReflowZone[] zones, [AllowNull] ReflowProcessContext context)
+			{
+				this.Running = running;
+				this.zones = zones;
+				this.context = context;
+			}
+
+			public StartProcessRunCommand Running { get; }
+
+			public Tuple<Temperature, bool> GetNextSetpoint()
+			{
+				if (this.context == null)
+					return Tuple.Create(Temperature.Undefined, false);
+
+				var zone = this.zones.FirstOrDefault(x => x.CanProvideNextSetpoint(this.context));
+				if (zone == null)
+					return Tuple.Create(Temperature.Undefined, true);
+
+				return Tuple.Create(zone.GetNextSetpoint(this.context), false);
+			}
+
+			public IRunningState CloneWith([AllowNull] ReflowProcessContext context)
+			{
+				return new RunningState(this.Running, this.zones, context);
+			}
+		}
+
+		private static readonly StoppedState Stopped = new StoppedState();
+
+		private readonly object startSync = new object();
+		private readonly IHaveReflowTimebaseSettings settings;
+
+		private IRunningState runningState;
+		private ReflowProcessContext context;
+
+		public ReflowProcessController(IHaveReflowTimebaseSettings settings)
+		{
+			this.settings = settings;
+			this.runningState = Stopped;
+		}
+
+		bool IControlReflowProcess.TryStart(StartProcessRunCommand profile, out StartProcessRunCommand running)
+		{
+			lock (this.startSync)
+			{
+				var state = this.runningState;
+				if (state.Running != null)
+				{
+					running = state.Running;
+					return false;
+				}
+
+				this.runningState = new RunningState(profile, profile.Zones.ToArray(), this.context);
+				running = profile;
+				return true;
+			}
+		}
+
+		void IControlReflowProcess.Abort()
+		{
+			this.runningState = Stopped;
 		}
 
 		Temperature IProvideReflowTemperatureSetpoints.GetNextSetpoint()
 		{
-			if (this.context == null)
+			var state = this.runningState;
+			if (state == null)
 				return Temperature.Undefined;
 
-			var zone = this.zones.FirstOrDefault(z => z.CanProvideNextSetpoint(this.context));
-			return zone?.GetNextSetpoint(this.context) ?? Temperature.Undefined;
+			var setpoint = state.GetNextSetpoint();
+			this.runningState = setpoint.Item2 ? Stopped : this.runningState.CloneWith(this.context);
+
+			return setpoint.Item1;
 		}
 
 		void IObserve<PidControllerAdjusted>.Observe(PidControllerAdjusted observed)
 		{
-			this.context = new ReflowProcessContext(observed);
+			this.context = new ReflowProcessContext(this.settings.SamplingInterval, observed);
 		}
 	}
 }

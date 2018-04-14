@@ -1,4 +1,5 @@
-﻿using CommandLine;
+﻿using System;
+using CommandLine;
 
 namespace Restall.HotPi.Reflow
 {
@@ -10,13 +11,15 @@ namespace Restall.HotPi.Reflow
 			decimal? max31850ColdJunctionStaticErrorInCelsius,
 			double? pidKp,
 			double? pidKi,
-			double? pidKd)
+			double? pidKd,
+			TimeSpan? samplingInterval)
 		{
 			this.UiHost = uiHost;
 			this.Max31850ColdJunctionStaticErrorInCelsius = max31850ColdJunctionStaticErrorInCelsius;
 			this.PidKp = pidKp;
 			this.PidKi = pidKi;
 			this.PidKd = pidKd;
+			this.SamplingInterval = samplingInterval;
 		}
 
 		[Option(longName: "ui-host", shortName: 'u', Default = "", HelpText = "The URL that will host the UI")]
@@ -33,5 +36,8 @@ namespace Restall.HotPi.Reflow
 
 		[Option(longName: "pid-kd", Default = null, HelpText = "The Derivative coefficient (Kd) of the PID Controller")]
 		public double? PidKd { get; }
+
+		[Option(longName: "sampling-interval", Default = null, HelpText = "The interval of time between taking temperature samples")]
+		public TimeSpan? SamplingInterval { get; }
 	}
 }

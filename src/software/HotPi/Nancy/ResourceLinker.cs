@@ -1,6 +1,7 @@
 ﻿using System;
 using Nancy;
 using Nancy.Linker;
+using NullGuard;
 
 namespace Restall.HotPi.Nancy
 {
@@ -15,9 +16,9 @@ namespace Restall.HotPi.Nancy
 			this.linker = linker;
 		}
 
-		public Uri RelativeUriFor(string routeName)
+		public Uri RelativeUriFor(string routeName, [AllowNull] dynamic parameters = null)
 		{
-			return this.linker.BuildRelativeUri(this.context, routeName);
+			return this.linker.BuildRelativeUri(this.context, routeName, parameters);
 		}
 	}
 }

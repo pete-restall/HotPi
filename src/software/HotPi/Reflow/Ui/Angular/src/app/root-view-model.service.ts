@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 
-import { IHaveStartReflowLink } from './reflow-controls/i-have-start-reflow-link.interface';
+import { IHaveSummaryOfAllProfilesLink } from './reflow-controls/i-have-summary-of-all-profiles-link.interface';
 
 @Injectable()
-export class RootViewModelService implements IHaveStartReflowLink {
+export class RootViewModelService implements IHaveSummaryOfAllProfilesLink {
   public get shutdownLink(): string {
     return this.viewModel.pi.shutdownLink;
   }
@@ -16,7 +16,7 @@ export class RootViewModelService implements IHaveStartReflowLink {
     return window;
   }
 
-  public get startReflowLink(): string {
-    return this.viewModel.reflow.startLink;
+  public get summaryOfAllProfilesLink(): string {
+    return this.viewModel.profile.summaryOfAllProfilesLink;
   }
 }

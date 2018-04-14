@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Diagnostics.CodeAnalysis;
+using NullGuard;
 
 namespace Restall.HotPi.Reflow
 {
-	public class Temperature : IEquatable<Temperature>
+	public class Temperature : IComparable<Temperature>, IEquatable<Temperature>
 	{
 		public static readonly Temperature Undefined = new Temperature();
 
@@ -23,30 +24,61 @@ namespace Restall.HotPi.Reflow
 		[SuppressMessage("ReSharper", "AutoPropertyCanBeMadeGetOnly.Local", Justification = CodeAnalysisJustification.ForSerialisation)]
 		public decimal Kelvin { get; private set; }
 
-		public override bool Equals(object obj)
+		public override bool Equals([AllowNull] object obj)
 		{
 			return this.Equals(obj as Temperature);
 		}
 
-		public static bool operator !=(Temperature a, Temperature b)
+		public static bool operator !=([AllowNull] Temperature a, [AllowNull] Temperature b)
 		{
 			return !(a == b);
 		}
 
-		public static bool operator ==(Temperature a, Temperature b)
+		public static bool operator ==([AllowNull] Temperature a, [AllowNull] Temperature b)
 		{
 			return a?.Equals(b) == true;
 		}
 
-		public bool Equals(Temperature other)
+		public bool Equals([AllowNull] Temperature other)
 		{
+			return this.CompareTo(other) == 0;
+		}
+
+		public int CompareTo([AllowNull] Temperature other)
+		{
+			if (ReferenceEquals(this, other))
+				return 0;
+
 			if (ReferenceEquals(null, other))
+				return 1;
+
+			return this.Kelvin.CompareTo(other.Kelvin);
+		}
+
+		public static bool operator <([AllowNull] Temperature a, [AllowNull] Temperature b)
+		{
+			if (ReferenceEquals(a, null) && ReferenceEquals(b, null))
 				return false;
 
-			if (ReferenceEquals(this, other))
+			return ReferenceEquals(a, null) || a.CompareTo(b) < 0;
+		}
+
+		public static bool operator <=([AllowNull] Temperature a, [AllowNull] Temperature b)
+		{
+			return ReferenceEquals(a, null) || a.CompareTo(b) <= 0;
+		}
+
+		public static bool operator >([AllowNull] Temperature a, [AllowNull] Temperature b)
+		{
+			return a?.CompareTo(b) > 0;
+		}
+
+		public static bool operator >=([AllowNull] Temperature a, [AllowNull] Temperature b)
+		{
+			if (ReferenceEquals(a, null) && ReferenceEquals(b, null))
 				return true;
 
-			return this.Kelvin == other.Kelvin;
+			return a?.CompareTo(b) >= 0;
 		}
 
 		[SuppressMessage("ReSharper", "NonReadonlyMemberInGetHashCode", Justification = CodeAnalysisJustification.ImmutableSemantics)]

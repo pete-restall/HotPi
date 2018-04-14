@@ -5,6 +5,7 @@ using Nancy;
 using Nancy.Bootstrapper;
 using Nancy.Bootstrappers.Ninject;
 using Nancy.Conventions;
+using Nancy.Diagnostics;
 using Nancy.ViewEngines;
 using Newtonsoft.Json;
 using Ninject;
@@ -28,6 +29,8 @@ namespace Restall.HotPi.Nancy
 			this.conventions = conventions.ToArray();
 		}
 
+		protected override DiagnosticsConfiguration DiagnosticsConfiguration => new DiagnosticsConfiguration { Password = "debug" };
+
 		protected override IKernel GetApplicationContainer()
 		{
 			return this.kernel;
@@ -50,7 +53,7 @@ namespace Restall.HotPi.Nancy
 		protected override void ConfigureRequestContainer(IKernel container, NancyContext context)
 		{
 			base.ConfigureRequestContainer(container, context);
-			container.Bind<NancyContext>().ToConstant(context);
+			container.Bind<NancyContext>().ToConstant(context).InTransientScope();
 			container.Bind<RouteRegistrar>().ToMethod(ctx => RouteRegistrarFactory.CreateDefaultInstance(type => ctx.ContextPreservingGet(type)));
 
 			context.SetLazyItem(() => container.Get<JsonSerializer>());

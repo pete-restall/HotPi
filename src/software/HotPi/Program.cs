@@ -6,6 +6,9 @@ using Restall.HotPi.Reflow;
 
 namespace Restall.HotPi
 {
+	// TODO: SAFETY FEATURE - IF THERMOCOUPLE TEMPERATURE READING GOES OVER 280degC THEN ABORT !
+	// TODO: SAFETY FEATURE - GIVE THE REFLOW PROCESS A TIMEOUT AND ABORT IF WE DON'T REACH A CONCLUSION IN THIS TIME
+
 	public static class Program
 	{
 		private static TextWriter Stderr => Console.Error;

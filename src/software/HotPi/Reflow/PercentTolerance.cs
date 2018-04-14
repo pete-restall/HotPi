@@ -2,22 +2,22 @@
 
 namespace Restall.HotPi.Reflow
 {
-	public class Tolerance
+	public class PercentTolerance : IProvideTolerance
 	{
 		private readonly double lowerFraction;
 		private readonly double upperFraction;
 
-		public Tolerance(double percent)
+		public PercentTolerance(double percent)
 			: this(percent, percent)
 		{
 		}
 
-		public Tolerance(double lowerPercent, double upperPercent)
+		public PercentTolerance(double lowerPercent, double upperPercent)
 		{
-			if (lowerPercent < 0)
+			if (lowerPercent <= double.Epsilon * 100)
 				throw new ArgumentOutOfRangeException(nameof(lowerPercent), lowerPercent, "Tolerance percentage should be a positive number");
 
-			if (upperPercent < 0)
+			if (upperPercent <= double.Epsilon * 100)
 				throw new ArgumentOutOfRangeException(nameof(upperPercent), upperPercent, "Tolerance percentage should be a positive number");
 
 			this.lowerFraction = lowerPercent / 100;

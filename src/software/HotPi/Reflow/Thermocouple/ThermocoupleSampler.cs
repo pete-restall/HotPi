@@ -40,7 +40,7 @@ namespace Restall.HotPi.Reflow.Thermocouple
 
 		private ThermocoupleSample ReadWithPossibleThrow()
 		{
-			var conversionResponse = this.max31850.Execute(this.sampleInterop.SampleThermocouple, TimeSpan.FromSeconds(1));
+			var conversionResponse = this.max31850.Execute(this.sampleInterop.SampleThermocouple, 200.Milliseconds());
 			if (!conversionResponse.PresencePulse)
 			{
 				return new ThermocoupleSample(
@@ -50,7 +50,7 @@ namespace Restall.HotPi.Reflow.Thermocouple
 					Temperature.Undefined);
 			}
 
-			var scratchpad = this.max31850.Execute(this.scratchpadInterop.ReadScratchpad, TimeSpan.FromSeconds(1));
+			var scratchpad = this.max31850.Execute(this.scratchpadInterop.ReadScratchpad, 200.Milliseconds());
 			return new ThermocoupleSample(
 				conversionResponse.Timestamp,
 				scratchpad.ThermocoupleConversionFaults,
