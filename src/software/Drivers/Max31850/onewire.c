@@ -27,7 +27,6 @@ int NOEXPORT onewireInitialise(void)
 static void onewireTristate(void)
 {
 	bcm2835_gpio_fsel(onewire, BCM2835_GPIO_FSEL_INPT);
-	bcm2835_gpio_clr(onewire);
 }
 
 void NOEXPORT onewireShutdown(void)
@@ -81,24 +80,24 @@ static void onewireWriteBit(unsigned char bit)
 	onewireDriveLow();
 	if (bit == 0)
 	{
-		bcm2835_delayMicroseconds(60 + MAX_RISE_TIME_US);
+		bcm2835_delayMicroseconds(61);
 		onewireTristate();
+		bcm2835_delayMicroseconds(MAX_RISE_TIME_US + RECOVERY_US);
 	}
 	else
 	{
 		bcm2835_delayMicroseconds(MIN_PULSE_US);
 		onewireTristate();
-		bcm2835_delayMicroseconds(60 + MAX_RISE_TIME_US);
+		bcm2835_delayMicroseconds(
+			61 - MIN_PULSE_US + MAX_RISE_TIME_US + RECOVERY_US);
 	}
-
-	bcm2835_delayMicroseconds(RECOVERY_US);
 }
 
 unsigned char NOEXPORT onewireReadByte(void)
 {
 	unsigned char byte = 0;
-	for (int i = 0; i < 8; i++)
-		byte |= onewireReadBit() << i;
+	for (unsigned char i = 0; i < 8; i++)
+		byte |= (unsigned char) (onewireReadBit() << i);
 
 	return byte;
 }
@@ -109,10 +108,10 @@ unsigned char NOEXPORT onewireReadBit(void)
 	onewireDriveLow();
 	bcm2835_delayMicroseconds(MIN_PULSE_US);
 	onewireTristate();
-	bcm2835_delayMicroseconds(MAX_RISE_TIME_US + 4);
+	bcm2835_delayMicroseconds(MAX_RISE_TIME_US + 8);
 	bit = onewireIsLow() ? 0 : 1;
 	bcm2835_delayMicroseconds(
-		60 - MAX_RISE_TIME_US - 4 - MIN_PULSE_US + RECOVERY_US);
+		60 - MAX_RISE_TIME_US - 8 - MIN_PULSE_US + RECOVERY_US);
 
 	return bit;
 }
