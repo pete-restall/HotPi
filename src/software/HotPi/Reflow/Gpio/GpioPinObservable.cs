@@ -22,7 +22,7 @@ namespace Restall.HotPi.Reflow.Gpio
 			this.observer.Observe(new GpioPinChanged(
 				this.now(),
 				args.Configuration.Pin,
-				args.Configuration.Reversed ? !args.Enabled : args.Enabled));
+				args.Enabled));
 		}
 
 		public void Dispose()
