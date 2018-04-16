@@ -8,7 +8,7 @@ namespace Restall.HotPi.Reflow.Controller
 		public override void Load()
 		{
 			this.Kernel?
-				.Rebind<IControlReflowProcess, IProvideReflowTemperatureSetpoints, IObserve<PidControllerAdjusted>>()
+				.Bind<ReflowProcessController, IControlReflowProcess, IProvideReflowTemperatureSetpoints, IObserve<PidControllerAdjusted>>()
 				.To<ReflowProcessController>()
 				.InSingletonScope();
 		}

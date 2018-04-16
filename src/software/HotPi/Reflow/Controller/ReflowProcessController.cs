@@ -5,6 +5,7 @@ using Restall.HotPi.Reflow.Profiles;
 
 namespace Restall.HotPi.Reflow.Controller
 {
+	[DoesNotParticipateInBindingConventions]
 	public class ReflowProcessController : IControlReflowProcess, IProvideReflowTemperatureSetpoints, IObserve<PidControllerAdjusted>
 	{
 		private interface IRunningState
@@ -108,7 +109,6 @@ namespace Restall.HotPi.Reflow.Controller
 
 			var setpoint = state.GetNextSetpoint();
 			this.runningState = setpoint.Item2 ? Stopped : this.runningState.CloneWith(this.context);
-
 			return setpoint.Item1;
 		}
 

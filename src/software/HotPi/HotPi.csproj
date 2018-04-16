@@ -204,7 +204,10 @@
     <Compile Include="IMapper.cs" />
     <Compile Include="IObserve.cs" />
     <Compile Include="MulticastObserverWithAggregateExceptions.cs" />
+    <Compile Include="Reflow\Controller\Actuators\BottomElementSsr.cs" />
+    <Compile Include="Reflow\Controller\Actuators\TopElementSsr.cs" />
     <Compile Include="Reflow\Controller\IHavePidControllerSettings.cs" />
+    <Compile Include="Reflow\Controller\PidControllerAdjustedObserverModule.cs" />
     <Compile Include="Reflow\Profiles\HoldSegment.cs" />
     <Compile Include="Reflow\IntegerPercentToleranceExtensions.cs" />
     <Compile Include="Reflow\IntegerTemperatureExtensions.cs" />

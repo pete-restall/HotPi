@@ -1,4 +1,5 @@
 ﻿using Ninject.Modules;
+using Raspberry.IO;
 using Raspberry.IO.GeneralPurpose;
 
 namespace Restall.HotPi.Reflow.Gpio
@@ -19,20 +20,39 @@ namespace Restall.HotPi.Reflow.Gpio
 
 		private GpioPinMappingModule BindOutputPin(ConnectorPin pin, string name, bool isActiveLow = false)
 		{
+			var processorPin = pin.ToProcessor();
+			var pinName = "gpio:pin/" + name;
+
 			this.Kernel?
 				.Bind<PinConfiguration>()
-				.ToConstant(new OutputPinConfiguration(pin.ToProcessor()) { Name = name, Reversed = isActiveLow })
-				.Named("gpio:pin/" + name);
+				.ToConstant(new OutputPinConfiguration(processorPin) { Name = name, Reversed = isActiveLow })
+				.Named(pinName);
+
+			this.Kernel?
+				.Bind<IOutputBinaryPin>()
+				.To<GpioOutputBinaryPin>()
+				.Named(pinName)
+				.WithConstructorArgument(typeof(ProcessorPin), processorPin);
 
 			return this;
 		}
 
 		private GpioPinMappingModule BindInputPin(ConnectorPin pin, string name, bool isActiveLow = false, PinResistor pull = PinResistor.None)
 		{
+			var processorPin = pin.ToProcessor();
+			var pinName = "gpio:pin/" + name;
+
 			this.Kernel?
 				.Bind<PinConfiguration>()
-				.ToConstant(new InputPinConfiguration(pin.ToProcessor()) { Name = name, Reversed = isActiveLow, Resistor = pull })
-				.Named("gpio:pin/" + name);
+				.ToConstant(new InputPinConfiguration(processorPin) { Name = name, Reversed = isActiveLow, Resistor = pull })
+				.Named(pinName);
+
+			this.Kernel?
+				.Bind<IInputBinaryPin>()
+				.To<GpioInputBinaryPin>()
+				.Named(pinName)
+				.WithConstructorArgument(typeof(ProcessorPin), processorPin)
+				.WithConstructorArgument(typeof(PinResistor), pull);
 
 			return this;
 		}

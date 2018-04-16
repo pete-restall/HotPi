@@ -48,6 +48,16 @@ namespace Restall.HotPi.Reflow.Controller
 			if (setpoint == Temperature.Undefined)
 			{
 				this.ResetAtTime(observed.Sample.Timestamp);
+				this.observer.Observe(new PidControllerAdjusted(
+					timestamp: this.now(),
+					sampleTimestamp: observed.Sample.Timestamp,
+					sampleInterval: TimeSpan.Zero,
+					integral: this.integral,
+					derivative: this.derivative,
+					setpoint: observed.Sample.ThermocoupleTemperature,
+					processVariable: observed.Sample.ThermocoupleTemperature,
+					controlVariable: this.controlVariable));
+
 				return;
 			}
 
