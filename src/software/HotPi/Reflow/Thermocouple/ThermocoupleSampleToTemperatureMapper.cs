@@ -2,6 +2,8 @@
 {
 	public class ThermocoupleSampleToTemperatureMapper : IMapper<ThermocoupleSample, Temperature>
 	{
+		private static readonly Temperature CelsiusAdjustment = 0m.Celsius();
+
 		private readonly IMapper<ThermocoupleSample, Voltage> compensatedTemperatureToVoltageMapper;
 		private readonly IMapper<Voltage, Temperature> voltageToTemperatureMapper;
 		private readonly IMapper<Temperature, Temperature> coldJunctionErrorCompensation;
@@ -21,7 +23,7 @@
 			var thermocoupleVoltage = this.compensatedTemperatureToVoltageMapper.Map(obj);
 			var thermocoupleTemperature = this.voltageToTemperatureMapper.Map(thermocoupleVoltage);
 			var coldJunctionTemperature = this.coldJunctionErrorCompensation.Map(obj.ColdJunctionTemperature);
-			return coldJunctionTemperature + thermocoupleTemperature;
+			return new Temperature(coldJunctionTemperature.Kelvin + thermocoupleTemperature.Kelvin - CelsiusAdjustment.Kelvin);
 		}
 	}
 }

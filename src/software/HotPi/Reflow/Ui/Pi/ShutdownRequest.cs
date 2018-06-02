@@ -2,7 +2,7 @@
 
 namespace Restall.HotPi.Reflow.Ui.Pi
 {
-	[NamedRoute("pi:shutdown", "/pi/shutdown", "POST")]
+	[NamedRoute("pi:shutdown", "/pi", "SHUTDOWN")]
 	public class ShutdownRequest
 	{
 		public ShutdownRequest(bool areYouSure)

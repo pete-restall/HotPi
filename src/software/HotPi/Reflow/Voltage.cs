@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics.CodeAnalysis;
+using NullGuard;
 
 namespace Restall.HotPi.Reflow
 {
@@ -20,7 +21,7 @@ namespace Restall.HotPi.Reflow
 			return this.Equals(obj as Voltage);
 		}
 
-		public bool Equals(Voltage other)
+		public bool Equals([AllowNull] Voltage other)
 		{
 			if (ReferenceEquals(null, other))
 				return false;

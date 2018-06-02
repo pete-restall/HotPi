@@ -27,10 +27,10 @@ namespace Restall.HotPi.Reflow.Thermocouple.Max31850.Interop
 
 		private static bool IsErrorWithErrno(int result)
 		{
-			return (result & 0x4000000) != 0;
+			return (result & 0x40000000) != 0;
 		}
 
-		[DllImport(Max31850Interop.NativeLibraryName, EntryPoint = "max31850GetLastError")]
+		[DllImport(Max31850Interop.NativeLibraryName, EntryPoint = "max31850GetLastError", CallingConvention = CallingConvention.Cdecl)]
 		private static extern int Max31850GetLastError();
 
 		public static bool IsPresencePulseError(int result)
@@ -40,7 +40,7 @@ namespace Restall.HotPi.Reflow.Thermocouple.Max31850.Interop
 
 		public static bool IsError(int result, int mask)
 		{
-			return (result & ~0xc000000) == mask;
+			return (result & ~0xc0000000) == mask;
 		}
 	}
 }

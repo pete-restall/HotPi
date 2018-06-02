@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.27428.2015
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HotPi", "HotPi\HotPi.csproj", "{3B9B5A87-DA81-46F4-8AD4-FF33FC9459E3}"
 EndProject
@@ -10,6 +10,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		..\..\.gitattributes = ..\..\.gitattributes
 		..\..\.gitignore = ..\..\.gitignore
 		AddUrlAcl.cmd = AddUrlAcl.cmd
+		CopyToPi.cmd = CopyToPi.cmd
 		INSTALL.txt = INSTALL.txt
 		..\..\LICENSE = ..\..\LICENSE
 		..\..\README.md = ..\..\README.md
@@ -28,5 +29,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {33ED4BED-0B8A-462F-B99B-9A1DD24C114E}
 	EndGlobalSection
 EndGlobal

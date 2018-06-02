@@ -14,7 +14,7 @@ import 'rxjs/add/operator/toPromise';
   templateUrl: './watchdog.component.html',
   styleUrls: ['./watchdog.component.css']
 })
-@Hub({ hubName: 'ovenTemperatureSampledHub' })
+@Hub({ hubName: 'watchdogChangedHub' })
 export class WatchdogComponent implements OnInit, OnDestroy {
   private connected: boolean;
   private hub: HubWrapper;

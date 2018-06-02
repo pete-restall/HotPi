@@ -1,14 +1,14 @@
 ﻿using System.Diagnostics;
-using Raspberry.IO.GeneralPurpose;
+using Raspberry.IO;
 using Restall.HotPi.Reflow.Gpio;
 
 namespace Restall.HotPi.Reflow.Watchdog
 {
 	public class Watchdog
 	{
-		private readonly GpioOutputBinaryPin clrwdt;
+		private readonly IOutputBinaryPin clrwdt;
 
-		public Watchdog([GpioPin("CLRWDT")] GpioOutputBinaryPin clrwdt)
+		public Watchdog([GpioPin("CLRWDT")] IOutputBinaryPin clrwdt)
 		{
 			this.clrwdt = clrwdt;
 		}

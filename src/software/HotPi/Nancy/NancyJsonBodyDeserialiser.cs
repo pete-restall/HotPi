@@ -24,7 +24,7 @@ namespace Restall.HotPi.Nancy
 			{
 				using (var jsonTextReader = new JsonTextReader(streamReader))
 				{
-					return this.serialiser.Deserialize(jsonTextReader);
+					return this.serialiser.Deserialize(jsonTextReader, context.DestinationType);
 				}
 			}
 		}

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Diagnostics.CodeAnalysis;
 
-namespace Restall.HotPi.Reflow
+namespace Restall.HotPi.Reflow.Oven
 {
 	public class OvenTemperatureSampled
 	{

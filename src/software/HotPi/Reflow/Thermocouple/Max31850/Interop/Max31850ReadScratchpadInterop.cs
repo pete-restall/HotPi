@@ -23,7 +23,7 @@ namespace Restall.HotPi.Reflow.Thermocouple.Max31850.Interop
 		public Max31850ReadScratchpadResponse ReadScratchpad()
 		{
 			var scratchpad = new Scratchpad();
-			int result = Max31850ReadScratchpad(scratchpad);
+			int result = Max31850ReadScratchpad(ref scratchpad);
 			return new Max31850ReadScratchpadResponse(
 				presencePulse: !Max31850ErrorInterop.IsError(result),
 				raw: new[]
@@ -34,7 +34,7 @@ namespace Restall.HotPi.Reflow.Thermocouple.Max31850.Interop
 				});
 		}
 
-		[DllImport(Max31850Interop.NativeLibraryName, EntryPoint = "max31850ReadScratchpad")]
-		private static extern int Max31850ReadScratchpad(Scratchpad scratchpad);
+		[DllImport(Max31850Interop.NativeLibraryName, EntryPoint = "max31850ReadScratchpad", CallingConvention = CallingConvention.Cdecl)]
+		private static extern int Max31850ReadScratchpad(ref Scratchpad scratchpad);
 	}
 }
