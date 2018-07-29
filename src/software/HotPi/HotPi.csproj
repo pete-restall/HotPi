@@ -205,6 +205,7 @@
     <Compile Include="IObserve.cs" />
     <Compile Include="MulticastObserverWithAggregateExceptions.cs" />
     <Compile Include="Reflow\Controller\Actuators\BottomElementSsr.cs" />
+    <Compile Include="Reflow\Controller\Actuators\FanSsr.cs" />
     <Compile Include="Reflow\Controller\Actuators\TopElementSsr.cs" />
     <Compile Include="Reflow\Controller\IHavePidControllerSettings.cs" />
     <Compile Include="Reflow\Controller\PidControllerAdjustedObserverModule.cs" />

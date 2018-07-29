@@ -20,6 +20,13 @@ namespace Restall.HotPi.Reflow.Controller.Actuators
 			if (observed.SampleInterval == TimeSpan.Zero)
 				return;
 
+			if (observed.ProcessVariable >= 270.Celsius())
+			{
+				Console.WriteLine("OVER TEMPERATURE CONDITION AT {0}K !  BOTTOM SSR TURNED OFF, WDT NOT CLEARED", observed.ProcessVariable.Kelvin);
+				this.ssr.Write(false);
+				return;
+			}
+
 			Console.WriteLine("BOTTOM SSR {0} - SP {1}, PV {2}, CV {3}", observed.ControlVariable > 0 ? "ON" : "OFF", observed.Setpoint.Kelvin, observed.ProcessVariable, observed.ControlVariable);
 			this.ssr.Write(observed.ControlVariable > 0);
 			this.wdt.Clear();
