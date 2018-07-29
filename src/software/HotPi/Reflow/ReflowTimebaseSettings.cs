@@ -8,7 +8,7 @@ namespace Restall.HotPi.Reflow
 		{
 			this.SamplingInterval = args.SamplingInterval ?? FromAppSettingsOrDefault("reflow:samplingInterval", 500.Milliseconds());
 			if (this.SamplingInterval < 200.Milliseconds())
-				throw new InvalidOperationException("Sampling interval " + this.SamplingInterval + " is below a reasonable minimum of 500ms");
+				throw new InvalidOperationException("Sampling interval " + this.SamplingInterval + " is below a reasonable minimum of 200ms");
 		}
 
 		private static TimeSpan FromAppSettingsOrDefault(string key, TimeSpan defaultValue)
