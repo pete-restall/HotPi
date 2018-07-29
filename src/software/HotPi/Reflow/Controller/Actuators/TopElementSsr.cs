@@ -9,7 +9,7 @@ namespace Restall.HotPi.Reflow.Controller.Actuators
 		private readonly IOutputBinaryPin ssr;
 		private readonly Watchdog.Watchdog wdt;
 
-		public TopElementSsr([GpioPin("SSR0")] IOutputBinaryPin ssr, Watchdog.Watchdog wdt)
+		public TopElementSsr([GpioPin("SSR1")] IOutputBinaryPin ssr, Watchdog.Watchdog wdt)
 		{
 			this.ssr = ssr;
 			this.wdt = wdt;
