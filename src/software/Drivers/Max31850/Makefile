@@ -2,7 +2,7 @@ CC=gcc
 CCARGS=-c -Wall -pedantic -fPIC -O3
 LD=ld
 LDARGS=-soname libhotpi-max31850.so.1 -shared
-LIBS=-lbcm2835
+LIBS=-lbcm2835 -L /usr/lib/gcc/arm-linux-gnueabihf/6 -lgcc
 
 SO_FILE=libhotpi-max31850.so.1.0.0
 OBJ_FILES=max31850.o onewire.o errno.o

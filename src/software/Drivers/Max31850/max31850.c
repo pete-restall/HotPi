@@ -1,5 +1,6 @@
 #include <bcm2835.h>
 #include <sched.h>
+#include <sys/mman.h>
 
 #include "onewire.h"
 #include "max31850.h"
@@ -19,7 +20,10 @@ static int setCurrentThreadToNearRealtime(void)
 {
 	static struct sched_param schedulerParameters = {0};
 	schedulerParameters.sched_priority = sched_get_priority_max(SCHED_FIFO) - 1;
-	return sched_setscheduler(0, SCHED_FIFO, &schedulerParameters) == 0;
+	if (sched_setscheduler(0, SCHED_FIFO, &schedulerParameters) != 0)
+		return 0;
+
+	return mlockall(MCL_CURRENT | MCL_FUTURE) == 0;
 }
 
 void EXPORT max31850Shutdown(void)

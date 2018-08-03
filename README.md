@@ -20,3 +20,15 @@ resolution required to mill the features of the MAX31850 was insufficient.
 This is a personal one-off project and not intended for anybody else's
 consumption.  But in case somebody's tempted then the usual disclaimers about
 playing with mains voltages apply...
+
+## Software
+I had started off writing the software myself but it was turning out to be
+a larger job than I wanted.  Then I stumbled across
+[picoReflow](https://github.com/apollo-ng/picoReflow).  I spent a few hours
+hacking some Python and ended up with a fully functional reflow controller
+and UI in a fraction of the time it would take to roll my own.  Thanks !
+
+The MAX31850 communication is a hand-cranked user-space bit-banging library
+based around [BCM2835](http://www.airspayce.com/mikem/bcm2835/), basically
+because there is no kernel support for the MAX31850 via the w1 module (and
+the fallback w1-gpio is not good enough).

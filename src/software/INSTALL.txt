@@ -34,14 +34,9 @@
 
 4). Reboot the Pi for the filesystem expansion to take effect, then SSH to it.
 
-5). Install Mono:
+5). Install picoReflow dependencies:
 
-	$ sudo apt-get install dirmngr
-	$ sudo apt-get update
-	$ sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF
-	$ echo "deb http://download.mono-project.com/repo/debian stable-raspbianstretch main" | sudo tee /etc/apt/sources.list.d/mono-official-stable.list
-	$ sudo apt-get update
-	$ sudo apt-get install mono-complete
+	$ sudo apt-get install python-pip python-dev libevent-dev
 
 6). Optional - if using the Pi to compile the drivers, run:
 
@@ -54,18 +49,24 @@
 	$ sudo adduser hotpi --gid 1001
 	$ sudo adduser hotpi gpio
 
-8). Copy the (built) application to /home/hotpi/bin
+8). As hotpi, install picoReflow Python dependencies:
 
-9). Setup capabilities for the application (binding to port 80, near-realtime
+	$ pip install ez-setup
+	$ pip install greenlet bottle gevent gevent-websocket
+	$ pip install RPi.GPIO
+
+9). Copy the picoReflow directory (and its contents) to /home/hotpi
+
+10). Setup capabilities for the application (binding to port 80, near-realtime
     scheduling):
 
-	$ ### THIS IS INSECURE - BRUTE FORCE IS TO LOCK MONO TO THE HOTPI GROUP ###
+	$ ### THIS IS INSECURE - BRUTE FORCE IS TO LOCK PYTHON TO THE HOTPI GROUP ###
 
-	$ sudo chmod o-x /usr/bin/mono-sgen
-	$ sudo chown root:hotpi /usr/bin/mono-sgen
-	$ sudo setcap cap_net_bind_service,cap_sys_nice+ep /usr/bin/mono-sgen
+	$ sudo chmod o-x /usr/bin/python2.7
+	$ sudo chown root:hotpi /usr/bin/python2.7
+	$ sudo setcap cap_net_bind_service,cap_sys_nice,cap_ipc_lock+ep /usr/bin/python2.7
 
-10). Setup the /etc/rc.local script to run the application on boot:
+11). Setup the /etc/rc.local script to run the application on boot:
 
 	$ sudo vi /etc/rc.local
 
@@ -88,6 +89,7 @@
 			printf "My IP address is %s\n" "$_IP"
 		fi
 
+		################################################################################################## TODO !!!!!!!!!!!!!!
 		su hotpi -c '/usr/bin/mono /home/hotpi/bin/HotPi.exe >> /home/hotpi/run.log 2>&1' &
 
 		exit 0
