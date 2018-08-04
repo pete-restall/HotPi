@@ -37,11 +37,16 @@
 5). Install picoReflow dependencies:
 
 	$ sudo apt-get install python-pip python-dev libevent-dev
+	$ pip install ez-setup
+	$ pip install greenlet bottle gevent gevent-websocket
+	$ pip install RPi.GPIO
 
 6). Optional - if using the Pi to compile the drivers, run:
 
 	$ cd Drivers
 	$ ./install-bcm2835.sh
+
+	Make sure that libhotpi-max31850.so.* is copied to /usr/local/lib
 
 7). Create a user (hotpi), group (hotpi) and home for the application:
 
@@ -49,15 +54,9 @@
 	$ sudo adduser hotpi --gid 1001
 	$ sudo adduser hotpi gpio
 
-8). As hotpi, install picoReflow Python dependencies:
+8). Copy the picoReflow directory (and its contents) to /home/hotpi
 
-	$ pip install ez-setup
-	$ pip install greenlet bottle gevent gevent-websocket
-	$ pip install RPi.GPIO
-
-9). Copy the picoReflow directory (and its contents) to /home/hotpi
-
-10). Setup capabilities for the application (binding to port 80, near-realtime
+9). Setup capabilities for the application (binding to port 80, near-realtime
     scheduling):
 
 	$ ### THIS IS INSECURE - BRUTE FORCE IS TO LOCK PYTHON TO THE HOTPI GROUP ###
@@ -66,34 +65,11 @@
 	$ sudo chown root:hotpi /usr/bin/python2.7
 	$ sudo setcap cap_net_bind_service,cap_sys_nice,cap_ipc_lock+ep /usr/bin/python2.7
 
-11). Setup the /etc/rc.local script to run the application on boot:
+10). Run the following:
 
-	$ sudo vi /etc/rc.local
-
-		#!/bin/sh -e
-		#
-		# rc.local
-		#
-		# This script is executed at the end of each multiuser runlevel.
-		# Make sure that the script will "exit 0" on success or any other
-		# value on error.
-		#
-		# In order to enable or disable this script just change the execution
-		# bits.
-		#
-		# By default this script does nothing.
-
-		# Print the IP address
-		_IP=$(hostname -I) || true
-		if [ "$_IP" ]; then
-			printf "My IP address is %s\n" "$_IP"
-		fi
-
-		################################################################################################## TODO !!!!!!!!!!!!!!
-		su hotpi -c '/usr/bin/mono /home/hotpi/bin/HotPi.exe >> /home/hotpi/run.log 2>&1' &
-
-		exit 0
-
-	:wq
+	$ sudo cp /home/hotpi/picoreflow/lib/init/reflow /etc/init.d
+	$ sudo chmod +x /etc/init.d/reflow
+	$ sudo chmod o+r /etc/init.d/reflow
+	$ sudo update-rc.d reflow defaults
 
 11). Reboot and test the application runs...

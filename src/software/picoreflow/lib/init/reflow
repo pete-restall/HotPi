@@ -9,7 +9,7 @@
 ### END INIT INFO
 
 
-#! /bin/sh
+#!/bin/bash
 # /etc/init.d/reflow
 
 
@@ -17,7 +17,7 @@ export HOME
 case "$1" in
     start)
         echo "Starting Reflow Server"
-        /home/pi/picoReflow/picoreflowd.py  2>&1 &
+        /home/hotpi/picoreflow/picoreflowd.py 2>&1 | /usr/bin/logger -t reflow &
     ;;
     stop)
         echo "Stopping Reflow Server"

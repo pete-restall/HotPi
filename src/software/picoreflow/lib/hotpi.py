@@ -1,6 +1,5 @@
 #!/usr/bin/python
 from ctypes import *
-import os
 
 class Max31850Scratchpad(Structure):
     _fields_ = [("buffer", c_ubyte * 9)]
@@ -14,7 +13,7 @@ class HotPi(object):
         Parameters:
         - units:     (optional) unit of measurement to return. ("c" (default) | "k" | "f")
         '''
-        self.lib = CDLL(os.path.abspath("libhotpi-max31850.so.1.0.0"))
+        self.lib = CDLL("/usr/local/lib/libhotpi-max31850.so.1.0.0")
         self.units = units
         self.scratchpad = Max31850Scratchpad()
         self.valid_scratchpad = None
