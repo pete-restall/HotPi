@@ -1,5 +1,7 @@
 # HotPi - A Pi Zero W Reflow Oven Controller
 
+[![The Oven](https://github.com/pete-restall/HotPi/blob/master/doc/images/oven-front-800x600.jpg)](https://github.com/pete-restall/HotPi/blob/master/doc/images/oven-front.jpg)
+
 ## What is it ?
 Years ago I bought a small oven for reflow conversion but never really got
 around to it.  More recently I've had a need to reflow boards more accurately
@@ -16,6 +18,8 @@ The PCB was intended to be milled as it should have been a quicker turnaround
 and cheaper since I have the copper clad and engraving bits already, although it
 is much more labour intensive than outsourcing to China.  Unfortunately the
 resolution required to mill the features of the MAX31850 was insufficient.
+
+[![The Board](https://github.com/pete-restall/HotPi/blob/master/doc/images/board-in-box-400x300.jpg)](https://github.com/pete-restall/HotPi/blob/master/doc/images/board-in-box.jpg)
 
 This is a personal one-off project and not intended for anybody else's
 consumption.  But in case somebody's tempted then the usual disclaimers about
